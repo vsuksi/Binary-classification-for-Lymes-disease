@@ -1,0 +1,26 @@
+#### Calcom library
+- used to perform calculations and build models
+
+
+#### Metabolomics.py
+- an extension to the calcom library for metabolomics
+
+
+#### Iterative_feature_removal.py (script 1)
+- removes features between healthy control groups
+
+- This script should be run in segments, as there are hyper-parameter tuning steps which require variable user input.
+
+#### Feature_selection.py (script 2)
+- Combines feature sets across different imputation/normalization schemes. The features can then be sent for evaluation, peak quality and targeting in Skyline
+
+#### Combine_feature_sets.py (script 3)
+- Combines feature sets across different imputation/normalization schemes. The features can then be sent for evaluation, peak quality and targeting in Skyline.
+
+#### Test_features.py
+- From my head = test features
+
+#### Test_targeted_features.py (script 4)
+- Used to evaluate test performance of the model according to features targeted in Skyline. Should be run in segments.
+
+#### Test_targeted_log_features.py (optional script 4)
