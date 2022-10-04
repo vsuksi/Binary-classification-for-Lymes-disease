@@ -1,11 +1,23 @@
-# Leo
-- Ajattelin perehtyä Dorden käyttämiin luokittimiin, mutta gradun GitLab referenssi palauttaa 404:n. Onko sinulla sattumoisin koodi jossain tallessa?
-- Voinkoa etsiä Dardon tiedostosta vastauksia kysymyksiini vai pitäisikö minun huomioida jotain erityisiä asioita?
-- Onko Dorden gradukoodi the shit tai onko tulokset joihin vertaan minun implementaatioita Dordesta parannaeltu versio? Eli onko dataset jonka sain Dorden puhdistama?
-- Does one need domain knowledge for package development?
-- Seuraavia asioita opetellut:
-SSVM cost function
+**When something involving someone else comes up, dump  it in this file. The goal is that e-mails to other people almost write themselves; once you've accumulated things to communicate, an internal order will often present itself.**
 
+# Leo
+
+Hei!
+
+Hoidan tänään kuntoon pienen silmävamman, joten minua ei tule näkymään yliopistolla.
+
+Mainitsemaani Python-kirjastoa (calcom) ei löydy standardilähteistä, julkaisussa mainitsevatkin sen olevan in-house. Pistin yli viikko sitten muutamille sähköpostia asiasta, mutta ei ole kuulunut mitään.
+
+Tekeminen on nyt vähän hidasta silmän takia, mutta olen tutustunut muihin Dorden käyttäniin luokittimiin ja muuttanut eräänlaisen oppimispolku-dokumentin Quartoon sekä täydentänyt sitä oppimillani asioilla.
+
+Teenkö training-validation splitin Dorden mukaan, eli 80/20 %?
+
+Onko ok käyttää julkaisun cost function hyperparametrien arvoja luokittimissa? Julkaisusta tai koodista ei saa selvää miten arvoihin päädyttiin.
+
+calcom
+
+- Does one need domain knowledge for package development?
+s
 
 
 # Kehoe
