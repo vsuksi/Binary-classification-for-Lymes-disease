@@ -1,5 +1,8 @@
 # Questions and clarifications
 
+What is Skyline?
+> **A freely available, open-source software tool for targeted quantitative mass spectrometry method development and data processing with a 10 year history supporting six major instrument vendors
+
 Which scripts require variable user input?
 > **feature_selection.py, iterative_feature_removal.py, test_targeted_features.py, test_targeted_log_features.py**
 
@@ -11,9 +14,11 @@ What is the cost function in the case of feature_selection.py (SSVM, calcom.clas
 What is the variable hyperparameter use case in feature_selection.py?
 > **Cost parameter, although I don't know how it was determined.**
 
-What is the use case in iterative_feature_removal.py?
+What is the variable hyperparameter use case in iterative_feature_removal.py?
+> **Probably what type of  normalization and imputation is chosen**
 
 What is the use case in test_targeted_features.py?
+> **What type of normalization 
 
 What is the use case in test_targeted_log_features.py?
 

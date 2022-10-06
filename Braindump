@@ -1,10 +1,38 @@
 # Braindump
 
-- how to check if a package is available in linux
+In the Quarto presentation, do a comparison of the data cleaning methods across the two approaches. State that they are quite different indeed and present some statistics on how they differ? The differences in data cleaning methods made the results uncomparable. Now, let me present the results as classified by Kehoe's SSVM and Dorde's classifiers on the same dataset, as cleaned by Dorde. and  Present SSVM from Kehoe along with Dordes methods.
+
+Get classification accuracy from Dorde's classifiers and Kehoe's SSVM
+
+Get file.R names from Dorde's thesis code snippets
+
+Targeted features are done by Skyline which is fed a combined feature set; thus, fe
+
+Iterative feature removal removes features between healthy control groups so that they have the same features?
+
+What stage is the dataset in which Dorde is referring to? Pretty raw, methinks.
+
+How to have a system explaining, in detail, what the code is doing?
+
+Make the Quarto presentation so that you have specific things in the code that you point out as important.
+
+Test running Dorde's R code in Quarto.
+Explain the classifiers in the presentation
+
+Only the one Python script should really be included in the Quatro-document, that is
+
+
+How do I get the exact same samples as Dorde? Also ask Dorde about the packages.
+
+Combining feature sets?
+
+XCMS
+
+Will I need iterative_feature_removal at all?
+
+- presentation: simply run the pipeline in Quarto!
 
 - https://programmathically.com/
-
-- pianomuutto ja kylpyamme samaan aikaan?
 
 - borsta mellan wc kakel med tandborste!
 

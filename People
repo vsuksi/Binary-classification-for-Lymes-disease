@@ -2,17 +2,16 @@
 
 # Leo
 
-Hei!
 
-Hoidan tänään kuntoon pienen silmävamman, joten minua ei tule näkymään yliopistolla.
 
-Mainitsemaani Python-kirjastoa (calcom) ei löydy standardilähteistä, julkaisussa mainitsevatkin sen olevan in-house. Pistin yli viikko sitten muutamille sähköpostia asiasta, mutta ei ole kuulunut mitään.
 
-Tekeminen on nyt vähän hidasta silmän takia, mutta olen tutustunut muihin Dorden käyttäniin luokittimiin ja muuttanut eräänlaisen oppimispolku-dokumentin Quartoon sekä täydentänyt sitä oppimillani asioilla.
 
-Teenkö training-validation splitin Dorden mukaan, eli 80/20 %?
 
-Onko ok käyttää julkaisun cost function hyperparametrien arvoja luokittimissa? Julkaisusta tai koodista ei saa selvää miten arvoihin päädyttiin.
+
+
+
+
+
 
 calcom
 
