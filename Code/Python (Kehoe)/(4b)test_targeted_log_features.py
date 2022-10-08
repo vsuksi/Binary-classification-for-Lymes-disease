@@ -110,4 +110,3 @@ if __name__ == "__main__":
     C_by_disease_state.loc['EDL'] = edl_bins
     C_by_disease_state.loc['ELL'] = ell_bins
     C_by_disease_state.to_csv(save_loc + '20210211_ELvsHCEric_BF_BestMFsTransitionResults_2_confusion_mat_by_disease_state.csv')
-

@@ -2,7 +2,9 @@
 
 # Leo
 
+Hei,
 
+Jep, R on tosiaan minulle aivan uusi juttu mutta saan aika hyvin irti tarvittavaa koodia Dorden gradusta.
 
 
 

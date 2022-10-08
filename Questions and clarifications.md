@@ -1,56 +1,43 @@
 # Questions and clarifications
 
-What is Skyline?
-> **A freely available, open-source software tool for targeted quantitative mass spectrometry method development and data processing with a 10 year history supporting six major instrument vendors
+**What is Skyline?**
+ A freely available, open-source software tool for targeted quantitative mass spectrometry method development and data processing with a 10 year history supporting six major instrument vendors
 
-Which scripts require variable user input?
-> **feature_selection.py, iterative_feature_removal.py, test_targeted_features.py, test_targeted_log_features.py**
+**Which scripts require variable user input?**
+feature_selection.py, iterative_feature_removal.py, test_targeted_features.py, test_targeted_log_features.py**
 
-What is the cost function in the case of feature_selection.py (SSVM, calcom.classifiers.ssvm)
-> **I can't be sure without accessing the the calcom library, but in general, the cost function for SVM is
+**What is the cost function in the case of feature_selection.py (SSVM, calcom.classifiers.ssvm)**
+I can't be sure without accessing the the calcom library, but in general, the cost function for SVM is
 
-![alt text](/SVM_illustration.png "Title")
+**What is the variable hyperparameter use case in feature_selection.py?**
+Cost parameter, although I don't know how it was determined.
 
-What is the variable hyperparameter use case in feature_selection.py?
-> **Cost parameter, although I don't know how it was determined.**
+**What is the variable hyperparameter use case in iterative_feature_removal.py?**
+Probably what type of  normalization and imputation is chosen**
 
-What is the variable hyperparameter use case in iterative_feature_removal.py?
-> **Probably what type of  normalization and imputation is chosen**
+**What is the use case in test_targeted_features.py?**
+What type of normalization.
 
-What is the use case in test_targeted_features.py?
-> **What type of normalization 
-
-What is the use case in test_targeted_log_features.py?
-
+**What is the use case in test_targeted_log_features.py?**
 Do you need to check that the classifier implementations works identically in R and Python?
 
-> You will not need to check this
+**How does the identification level relate to the accuracy of the model?**
+The accuracy of the predictions should, on average, be better with improved quality of data, since there is a smaller risk of metabolite misidentification and a clearer signal.**
 
->**The data has already been cleaned in R.**
+**How will the training data be split?**
+The training data is split to 80 % training, 20 % validation, and that's it; use the exact same sets as Dorde.
 
-How does the identification level relate to the accuracy of the model?
+**What is the training-test split?**
+80 % training, 20% split?
 
->**The accuracy of the predictions should, on average, be better with improved quality of data, since there is a smaller risk of metabolite misidentification and a clearer signal.**
+**How does iterative feature removal work?**
+In iterative feature removal, a model is fit to data repeatedly but after each iteration, the most important features of the earlier iterations are left out. This is motivated by dubious claims of parsimony in biological 
 
-How will the training data be split? Use cross-validation?
-> The training data is split to 80 % training, 20 % validation
+**Is calcom the library that wasn't available in R? It is not a data cleaning library as I thought, but perhaps feature engineering?**
+Indeed, calcom is not availabe in R.
 
-What is the training-test split?
-> 80 % training, 20% split the same as in kehoe?
-
-
-The hyperparameter user input that Dorde is suggesting (CV-AUROC) is not variable, so what is Kehoe et al referring to?
-
->**Cross-validation will be implemented**
-
-What does "variable user input" entail for running the iterative feature removal in segments?
-
-What is evaluation, peak quality and targeting of features in Skyline?
-
-Is calcom the library that wasn't available in R? It is not a data cleaning library as I thought, but perhaps feature engineering?
-
-What libraries and packages are used in the scripts?
->metabolomics(calcom, copy from deepcopy, missingpy) confusion_matrix from sklearn.metrics, numpy, pandas, datetime, os, re + pickle (in the optional test_targeted_log_features.py)
+**What libraries and packages are used in the scripts?**
+metabolomics(calcom, copy from deepcopy, missingpy) confusion_matrix from sklearn.metrics, numpy, pandas, datetime, os, re + pickle (in the optional test_targeted_log_features.py)
 
 What is the difference between features and targeted features?
 >targeted features are a subset of features which build the best possible model while avoiding overfitting

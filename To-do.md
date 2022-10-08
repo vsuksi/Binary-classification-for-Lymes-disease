@@ -9,6 +9,7 @@
 - conceptualize the classifiers for yourself in the Data Science Master Document
 - watch an introductory video about Quarto
 - How to read in excel data in Python?
+change the quotation 
 
 ## Slow burn
 - compulsory PowerPoint presentation

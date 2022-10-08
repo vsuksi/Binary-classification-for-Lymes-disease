@@ -1,8 +1,10 @@
 # Braindump
 
-In the Quarto presentation, do a comparison of the data cleaning methods across the two approaches. State that they are quite different indeed and present some statistics on how they differ? The differences in data cleaning methods made the results uncomparable. Now, let me present the results as classified by Kehoe's SSVM and Dorde's classifiers on the same dataset, as cleaned by Dorde. and  Present SSVM from Kehoe along with Dordes methods.
+In the Quarto presentation, do a comparison of the data cleaning methods across the two approaches. State that they are quite different indeed and present some statistics on how they differ? The differences in data cleaning methods made the results uncomparable. Now, let me present the results as classified by Kehoe's SSVM and Dorde's classifiers on the same dataset, as cleaned by Dorde. and  Present SSVM from Kehoe along with Dordes methods
 
-Get classification accuracy from Dorde's classifiers and Kehoe's SSVM
+
+
+Get classification accuracy from Dorde's classifiers and Kehoe's SSVM.
 
 Get file.R names from Dorde's thesis code snippets
 
@@ -13,6 +15,8 @@ Iterative feature removal removes features between healthy control groups so tha
 What stage is the dataset in which Dorde is referring to? Pretty raw, methinks.
 
 How to have a system explaining, in detail, what the code is doing?
+
+Vibe a jämpti presentation as follows: intent/design, pipeline, comparison, limitations, conclusion
 
 Make the Quarto presentation so that you have specific things in the code that you point out as important.
 
