@@ -1,8 +1,10 @@
 # Braindump
 
+**The braindump is a repository for the fleeting thoughts that further the project at hand but are better picked up at a later stage.**
+
 In the Quarto presentation, do a comparison of the data cleaning methods across the two approaches. State that they are quite different indeed and present some statistics on how they differ? The differences in data cleaning methods made the results uncomparable. Now, let me present the results as classified by Kehoe's SSVM and Dorde's classifiers on the same dataset, as cleaned by Dorde. and  Present SSVM from Kehoe along with Dordes methods
 
-
+Was targeting or non-targeting better?
 
 Get classification accuracy from Dorde's classifiers and Kehoe's SSVM.
 

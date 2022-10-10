@@ -2,7 +2,7 @@
 
 ## Overview
 
-Turku Data Science Group (TDSG) did an R implementation of work originally done in Pythons by E. Kehoe et al. (2022). The results of the two implementations are, however, not comparable because of differences in the available data cleaning methods across Python and R. Thus, I will do a Python implementation using the dataset TDSG which has been cleaned in R, so that the results can be compared. Results will be written to a .csv file. When the Python implementation is working as planned, the pipeline will be compiled using Quarto.
+Turku Data Science Group (TDSG) did an R implementation of work originally done in Python by E. Kehoe et al. (2022). The results of the two implementations are, however, not comparable because of differences in the available data cleaning methods across Python and R. Thus, I will do a Python implementation using the dataset TDSG which has been cleaned in R, so that the results can be compared. Results will be written to a .csv file. When the Python implementation is working as planned, the pipeline will be compiled using Quarto.
 
 At the end of the presentation, compare the accuracy of the SSVM prediction with the original data preprocessing and Dorde's classifiers.
 

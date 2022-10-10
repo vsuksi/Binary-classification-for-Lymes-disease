@@ -1,7 +1,15 @@
 # Questions and clarifications
 
+**This is a repository for critical information regarding the project at hand. Formulating it into a question allows for a specific viewpoint to be addressed or an implication to be hinted at, for example**
+
+**How did targeted features compare to non-targeted features (Kehoe et al.)?**
+Targeted features did better, as can
+
+**What is five-fold cross validation repeated one hundred times?**
+K-fold cross validation is used to estimate how well a model performs on new data and is good at preventing bias.
+
 **What is Skyline?**
- A freely available, open-source software tool for targeted quantitative mass spectrometry method development and data processing with a 10 year history supporting six major instrument vendors
+ A freely available, open-source software tool for targeted quantitative mass spectrometry method development and data processing.
 
 **Which scripts require variable user input?**
 feature_selection.py, iterative_feature_removal.py, test_targeted_features.py, test_targeted_log_features.py**
@@ -31,7 +39,7 @@ The training data is split to 80 % training, 20 % validation, and that's it; use
 80 % training, 20% split?
 
 **How does iterative feature removal work?**
-In iterative feature removal, a model is fit to data repeatedly but after each iteration, the most important features of the earlier iterations are left out. This is motivated by dubious claims of parsimony in biological 
+In iterative feature removal, a model is fit to data repeatedly but after each iteration, the most important features of the earlier iterations are left out. This is motivated by dubious claims of parsimony in biological
 
 **Is calcom the library that wasn't available in R? It is not a data cleaning library as I thought, but perhaps feature engineering?**
 Indeed, calcom is not availabe in R.
@@ -39,23 +47,21 @@ Indeed, calcom is not availabe in R.
 **What libraries and packages are used in the scripts?**
 metabolomics(calcom, copy from deepcopy, missingpy) confusion_matrix from sklearn.metrics, numpy, pandas, datetime, os, re + pickle (in the optional test_targeted_log_features.py)
 
-What is the difference between features and targeted features?
->targeted features are a subset of features which build the best possible model while avoiding overfitting
+**What is the difference between features and targeted features?**
+Targeted features are a subset of features which build the best possible model while avoiding overfitting.
 
-Who is Djordje?
->**Djordje is the guy who did the Lyme's disease work in R, but he used other classifiers in addition to**
+**Who is Djordje?**
+Djordje is the guy who did the Lyme's disease work in R, but he used other classifiers in addition to.
 
-What classifiers did Djordje use?
->Djordje used - logistic regression, decision trees, random forest, support vector machines with radial basis kernel, gradient boosted trees and k-nearest neighbors
+**What classifiers did Djordje use?**
+Djordje used  logistic regression, decision trees, random forests, support vector machines with radial basis kernel, gradient boosted trees and k-nearest neighbor.
 
-What does is mean that a split is stratified in Random Forest Classifier?
-> A stratified split splits the data with respect to something, for example so that the validation set has. This is especially important for small datasets, where random sampling is more likely to result in an uneven proportions of  Indeed,
+**What does is mean that a split is stratified in Random Forest Classifier?**
+A stratified split splits the data with respect to something, for example so that the validation set target classes are in proportion to that of the proportions of . This is especially important for small datasets, where random sampling is more likely to result in an uneven proportions of
 
- Which hyperparameters should be tuned nd what are they exactly?
+ **Which hyperparameters should be tuned nd what are they exactly?**
  >- Cost hyperparameter: L2-regularized logistic regression and L1- and L2-regularized SVM with linear and radial basis function kernels**
 **- The sigma hyperparameter is tuned for SVM with radial basis function kernel and controls the range of a single training instance. For a large value of sigma, the SVM decision boundary will rely on the points that are closest to the decision border**
 
-
-
- How are the hyperparameters tuned?
+ **How are the hyperparameters tuned?**
  > The hyperparameters are tuned using a k-fold cross-validation on the training data, where the average CVAUROC for each hyperparameter is used for running the test set.
