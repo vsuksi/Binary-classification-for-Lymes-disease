@@ -4,8 +4,14 @@
 
 **Enter tasks in a rough order of importance!**
 
-- conceptualize the classifiers for yourself in the Data Science Master Document
-- watch an introductory video about Quarto
+Answer Aminian; is it only for validation or is it diagnostic?
+
+Read about limitations in Dorde.
+
+Get classification accuracy from Dorde's classifiers and Kehoe's SSVM.
+
+Get file.R names from Dorde's thesis code snippets.
+
 - How to read in excel data in Python?
 change the quotation
 

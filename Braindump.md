@@ -2,15 +2,16 @@
 
 **The braindump is a repository for the fleeting thoughts that further the project at hand but are better picked up at a later stage.**
 
-In the Quarto presentation, do a comparison of the data cleaning methods across the two approaches. State that they are quite different indeed and present some statistics on how they differ? The differences in data cleaning methods made the results uncomparable. Now, let me present the results as classified by Kehoe's SSVM and Dorde's classifiers on the same dataset, as cleaned by Dorde. and  Present SSVM from Kehoe along with Dordes methods
+The two healthy control groups come from different sites, and had somewhat different features. The union of the features was of greater interest, since this work was done for diagnostic purposes.
 
-Was targeting or non-targeting better?
+Check if the features selected by Kehoe (targeted) and Dorde (untargeted) are similar!
 
-Get classification accuracy from Dorde's classifiers and Kehoe's SSVM.
+In the Quarto presentation, do a comparison of the data cleaning methods across the two approaches. State that they are quite different indeed and present some statistics on how they differ? The differences in data cleaning methods made the results uncomparable. Now, let me present the results as classified by Kehoe's SSVM and Dorde's classifiers on the same dataset, as cleaned by Dorde. and  Present SSVM from Kehoe along with Dordes methods.
 
-Get file.R names from Dorde's thesis code snippets
+10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10,000 piirrettä in glmnet.
 
-Targeted features are done by Skyline which is fed a combined feature set; thus, fe
+
+Appendix A has nothing to do with Lyme's classification.
 
 Iterative feature removal removes features between healthy control groups so that they have the same features?
 
@@ -25,11 +26,6 @@ Make the Quarto presentation so that you have specific things in the code that y
 Test running Dorde's R code in Quarto.
 Explain the classifiers in the presentation
 
-Only the one Python script should really be included in the Quatro-document, that is
-
-
-How do I get the exact same samples as Dorde? Also ask Dorde about the packages.
-
 Combining feature sets?
 
 XCMS
@@ -37,8 +33,6 @@ XCMS
 Will I need iterative_feature_removal at all?
 
 - presentation: simply run the pipeline in Quarto!
-
-- https://programmathically.com/
 
 - borsta mellan wc kakel med tandborste!
 
@@ -74,25 +68,6 @@ Targeted features vs features
 Reproducibility vs replicability:
 Reproducibility is the extent to which the exact workflow of a study can be followed to produce identical results. Replicability, on the other hand, focuses on whether a hypothesis can be confirmed across different experimental setups and datasets.
 
-must your libraries be in the same folder?(this was the case with ikkunasto)
-- I don't think so, this is only the case for
-
-- write to Leo asking about splitting validation data from training data/cross validation, but first check how it is done in the code
-
 Use the date to access the correct versions of packages (can they be accessed that way?)? Is this a reasonable assumption or should I ask for the exact versions?
 
-Virtual environments in research?
-
-Variable user input in replication of study?
-
 The scripts may well work without using exact same versions as in the publication but how would I know whether it's the variable user input or the scripts which cause results differing from those in the publication?
-
-Will I be using virtual environments in my workflow?
-
-**This is extra storage for short term memory and mini-hypotheses, which is very dynamic in that much of it is deleted or brought to bear at some other location. Yet, it is probably useful to formulate the brainstorm into complete sentences, as this is often enough to have clarity in the matter at hand**
-
-Use the glioma modeling code as help!?
-
-- exactly what calculations does the calcom library perform? Feature engineering?
-
--can you just install the script directly by pip or conda? let's see!
