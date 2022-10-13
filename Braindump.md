@@ -2,14 +2,39 @@
 
 **The braindump is a repository for the fleeting thoughts that further the project at hand but are better picked up at a later stage.**
 
+Can I simply feed the pipeline in a similar manner to 'below' in order run the pipeline with Leo's suggested amounts of features?
+disp _ features (result ,1:45)
+
+Check the wilcoxon rank-sum test implementation and look for clues on how to limit the number of features, perhaps there is a max somewhere?
+-Wilcox from Metabolomics Data analysis toolbox
+
+Features were selected by the Wilcox test, so you ought to be able to increase the number of features that way, somehow!
+
+You can advance by serching for "wilcox"
+
+You can advance by searching for "dataset" in Dorde's code.
+
+The dataset is fed into the pipeline (very last thing in appendices) which allows you to
+
+How do I choose the best features for Leo's proposal? Come up with a few suggestions and discuss them with Leo.
+
+In what contexs is the word grid used in data science.
+
+
+
+How to pick the feature weights (metabolite importance) from the glmnet?
+-
+
+How to make a plot with the number of features?
+- Number of features on x-axis, accuracy on y-axis
+
 The two healthy control groups come from different sites, and had somewhat different features. The union of the features was of greater interest, since this work was done for diagnostic purposes.
 
-Check if the features selected by Kehoe (targeted) and Dorde (untargeted) are similar!
+Check if the features selected by Kehoe (targeted) and Dorde (untargeted) are similar, but how?
 
 In the Quarto presentation, do a comparison of the data cleaning methods across the two approaches. State that they are quite different indeed and present some statistics on how they differ? The differences in data cleaning methods made the results uncomparable. Now, let me present the results as classified by Kehoe's SSVM and Dorde's classifiers on the same dataset, as cleaned by Dorde. and  Present SSVM from Kehoe along with Dordes methods.
 
 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10,000 piirrettä in glmnet.
-
 
 Appendix A has nothing to do with Lyme's classification.
 

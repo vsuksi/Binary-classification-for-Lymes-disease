@@ -2,8 +2,24 @@
 
 **This is a repository for critical information regarding the project at hand. Formulating it into a question allows for a specific viewpoint to be addressed or an implication to be hinted at, for example. Include synonyms when applicable.**
 
-**Concepts can take a while to crystallize in a seamless formulation; meanwhile, do the best you can to formulate how you understand the matter as this often means progress**
+**Concepts can take a while to crystallize in a seamless formulation; meanwhile, try to formulate the matter as it often means progress.**
 
+**The XG-boost model slightly better, why not use it instead?**
+
+**Does Dorde include features unique to the site collection (batch effect)? They are removed in Kehoe.**
+
+**Which validation parameter was given most attention in Dorde?**
+
+**Why is the data log-transformed before feature selection by Wilcoxon in Dorde?**
+
+**What test is used, exactly, and why?**
+Wilcoxon rank-sum test (Mann-Whitney U test). It is tolerant against outliers which are abundant in clinical data, which is problematic, and being non-parametric, it works better for data that isn't normally distributed. This is often the case in biomedical data.
+
+**How to make a plot with the number of features**
+Number of features on x-axis, accuracy on y-axis
+
+**How does L1 (Lasso) and L2-regularized (Ridge) regression differ? Which one performed better in Dorde?** Lasso regression adds the absolute weight coefficient as a penalty term to the cost function, while Ridge regression adds the square of the weight coefficient to the cost function.
+L2-regularized logistic regression was used in glmnet.
 
 **What exactly is the automated pipeline?**
 Inputs: A dataset with feature vectors being in the columns, outcome variable, training method, parameters.
@@ -15,12 +31,13 @@ Inputs: A dataset with feature vectors being in the columns, outcome variable, t
 UMAP charts, PCA plot, Cluster plot, Probability ellipse plot, and model per-
 formance.
 
-**How does Dorde deal with the site
+**How does Dorde deal with the site batch effect?**
 
 **What are the pros and cons of the approaches to feature quality between Dorde and Kehoe?**
 The targeted Kehoe features are quite interpretable in that they correspond to 42 known metabolites thus can be used as biomarkers. Given sufficient amounts of data from different batches (both site and instrument effects) would also mitigate batch effects, and Dorde would indeed
 
 **How many features did Dorde end up using? Is it possible that the PCA ended up identifying many of the same metabolites as Kehoe?**
+1023 features from 4800 features in the original dataset.
 
 
 **Is the quality of the features important for the diagnostic application?**
@@ -75,7 +92,8 @@ Probably what type of  normalization and imputation is chosen.
 What type of normalization.
 
 **What is the use case in test_targeted_log_features.py?**
-Do you need to check that the classifier implementations works identically in R and Python?
+
+**Do you need to check that the classifier implementations works identically in R and Python?**
 
 **How does the identification level relate to the accuracy of the model?**
 The accuracy of the predictions should, on average, be better with improved quality of data, since there is a smaller risk of metabolite misidentification and a clearer signal.**
