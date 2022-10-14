@@ -1,20 +1,16 @@
 **When something involving someone else comes up, dump  it in this file. The goal is that e-mails to other people almost write themselves; once you've accumulated things to communicate, an internal order will often present itself.**
 
 # Leo
-
-Jep, R on tosiaan minulle aivan uusi juttu mutta saan koodia aika hyvin irti ja opeteltua Dorden gradusta.
-
 Jos teenkin tuollaisen occurrence rankingin niin on helppo verrata Kehoeen?
 
 Mitä kirjastoa visualisointiin?
 
-Ei ole saatavilla: https://gitlab.com/openresearchlabs/pipeline-dorde
-
-Katsottaisiinko ensi viikolla, esim. torstaina mitä olen saanut aikaiseksi?
-
 Olen koittanut lähestyä uusia asioita pedagogisesti pitkää aikajännettä ajatellen, joten fokus ei ole ollut 100% itse projektissa.
 
-Jäisin mielelläni vielä kuukaudeksi.
+Aloittelijana samaa asiaa tarkoittavat tai hyvin läheiset termit hämmentävät
+- AUC, AUROC
+- L1-regularization, Lasso regression
+- L2-regularization, Ridge regression
 
 Flexioffice?
 
@@ -22,7 +18,6 @@ Flexioffice?
 
 
 # Aminian
-
 Hey there,
 
 

@@ -4,6 +4,20 @@
 
 **Concepts can take a while to crystallize in a seamless formulation; meanwhile, try to formulate the matter as it often means progress.**
 
+**What does the Wilcoxon p-value mean in the context of this project?**
+Given a null hypothesis, what is the probability that a given feature's rank sum intensity differs from that of the population rank sum intensity by chance? 
+
+**What disparities in feature importance are to be expected due to the different feature selection methodology across Dorde and Kehoe?**
+Since Dorde used statistical inference for feature selection, redundancy in the feature set is smaller.
+Statistical inference is faster
+
+**How does the testing AUC relate to training AUC in a successful model?**
+The testing AUC ought to be similar to the cross-validated training AUC.
+
+**What is the lambda hyperparameter in logistic regression?**
+
+**Are feature importances from Dorde are already ranked across the whole dataset since he used cv**
+
 **The XG-boost model slightly better, why not use it instead?**
 
 **Does Dorde include features unique to the site collection (batch effect)? They are removed in Kehoe.**

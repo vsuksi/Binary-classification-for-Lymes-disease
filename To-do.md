@@ -4,9 +4,13 @@
 
 **Enter tasks in a rough order of importance!**
 
+Check what classifiers Dorde used and if you could
+
 Tactical e-mail in which you suggest a time and date to Leo!
 
 Check how the glmnet is fed the features so you can advance on getting the number of features that Leo specified.
+
+Display the 45 most important features
 
 x, y
 

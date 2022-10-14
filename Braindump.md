@@ -2,6 +2,34 @@
 
 **The braindump is a repository for the fleeting thoughts that further the project at hand but are better picked up at a later stage.**
 
+Mann-Whitney tests features against the dependent variable,
+
+Both Dorde and Kehoe used UMAP
+
+Wilcoxon feature selection is an example of a filter method, while Kehoe's method is a wrapper method.
+
+Wilcoxon basically ranks the features with respect to their relationship to the dependent variable. This
+
+Positive to both Kehoe's statistical inference and Dorde's method is that they preserve the original semantics of the variables, unlike PCA, for example.
+
+Is it problematic that Kehoe did no correlation analysis of features?
+
+Specifically, 2198, 206, 682 and 147 were identified to contribute to batch effects from the log/knn, median-fold change/knn, standard/knn and raw/knn methods, respectively. After removal of these features, the batch effect disappeared for the healthy control samples. These features did, however, contribute to the the separation of disease state (EDL vs ELL)
+
+Perhaps check the file which was fed into skyline for ID's?
+- order vs ID?
+
+
+SSVM chose the features in Kehoe et al.,
+
+What are the Kehoe feature identifiers?
+
+It should be possible to make a occurrence ranking in Kehoe style
+
+Feature importances from Dorde are already ranked across the whole dataset since he used cv?
+
+Perhaps feature importances are different across models?
+
 Can I simply feed the pipeline in a similar manner to 'below' in order run the pipeline with Leo's suggested amounts of features?
 disp _ features (result ,1:45)
 
