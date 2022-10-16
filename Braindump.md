@@ -2,6 +2,69 @@
 
 **The braindump is a repository for the fleeting thoughts that further the project at hand but are better picked up at a later stage.**
 
+Site discriminatory features were removed by IFR, where features were removed until the balanced success rate for classification of site fell under 60%.
+
+KNN-imputation with log transform was used for IFR
+
+Kehoe evaluated 18 different combinations of transformation and imputation schemes. The chosen ones:
+KNN imputation with log transformation
+Median imputation with log transformation
+KNN imputation with median-fold change normalization
+KNN imputation with standardization
+
+Note which kind of batch effect; site or measurement.
+
+Features selected to Skyline were at least once in the top 10 of features in k folds of kffs, features from all transformation/imputation-schemes were included.
+
+Only use the ID, I have no clue what the "order" stands for.
+
+UMAP was used to evaluate the feature selection by kFFS using different imputation methods.
+
+"The accuracy of each SSVM model was assessed by fivefold cross-validation (Table 1), and revealed an accuracy of greater than 92%, regardless of the transformation/imputation scheme"
+
+Perhaps there is a good reason to use those with best
+
+IFR was used to remove batch-discriminatory features
+
+The two files what Dorde used are now on the DeskTop; the LCMS data is in  patient order without regard to the batch. When Dorde matched the old lcms data to the clinical data, the result is a dataset which uses only from one, the old, batch!
+
+Kehoe, on the other hand, built the model on the old data but based on features present in both old and new data. The model was tested on a new batch in order to estimate batch effect.
+
+The clinical data file simply contains clinical data on the patients
+
+How can I figure out what exact file is
+
+What would it take to run the pipeline on the newnew data?
+
+Hope that the newnew data can be run through Dorde's scripts.
+
+Leo did write something about old and new data.
+
+Combine the training and test data into one file so that you can use training_frac and specify the range used to train? In that way, you could use Dorde's code directly methinks.
+
+Dorde: "Logistics model with 3 random data splits" means training the model 3 times on random 75% of training data and cross validated on the 75% 100 times before testing on the remaining 25%.
+
+Random baseline by shuffling.
+
+The results are not comparable between Kehoe and Dorde because there is no batch effect in Dorde's approach as the test set came from the same batch.
+
+Intensity is the relative abundance while the mass/charge ratio and retention time describes the identity of the feature.
+
+Was the Kehoe test set from a different batch altogether? Dorde used a test set from the same batch. Perhaps I could do that?
+
+The old/new data has to do with the reality of batch effects, perhaps?
+
+LC separates metabolites by their retention time, MS by mass
+
+There is a distribution function in Wilcox which allows for the calculation of p-value
+
+The Dorde identifiers are ID's. Using them you can check whether the most important features have been validated by Kehoe, and overall do a comparison between the most important features across Dorde and Kehoe.
+
+This demonstrated that KNN imputation with log transformation on training sam-
+ples provided the highest mean fivefold cross-validation accuracy (99.8%, 0.3%) when an SSVM classifier was applied (Kehoe et al., Dorde also did log transformation)
+
+Wilcoxon normalizes the data? Nope, the preprocessing function does!
+
 Mann-Whitney tests features against the dependent variable,
 
 Both Dorde and Kehoe used UMAP

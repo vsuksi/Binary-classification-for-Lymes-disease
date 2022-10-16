@@ -6,6 +6,15 @@ Turku Data Science Group (TDSG) did an R implementation of work originally done 
 
 At the end of the presentation, compare the accuracy of the SSVM prediction with the original data preprocessing and Dorde's classifiers.
 
+
+Important links:
+Metabolomics data analysis toolbox:
+- log10 normalization
+https://rdrr.io/github/wanchanglin/mt/man/preproc.html
+
+Mikropml
+- run_ml
+https://rdrr.io/github/SchlossLab/mikropml/man/run_ml.html
 ### Methods
 
 #### Experimental methods
@@ -39,5 +48,3 @@ Fragmentation data from literature and databases reveals a probable structure.
 ##### Level 1: Validated identification
 
 Exact identification by reference standard.
-
--

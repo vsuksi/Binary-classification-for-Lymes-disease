@@ -2,13 +2,20 @@
 
 **This is a repository for critical information regarding the project at hand. Formulating it into a question allows for a specific viewpoint to be addressed or an implication to be hinted at, for example. Include synonyms when applicable.**
 
+**How does Log10-scaling work?**
+
+**What is the difference between Test.R and Train models.R?**
+In Train models.R, the training dataset is split into three training
+
+**What is order and what is feature in the PeakTable from Kehoe sent to Skyline?**
+
 **Concepts can take a while to crystallize in a seamless formulation; meanwhile, try to formulate the matter as it often means progress.**
 
 **What does the Wilcoxon p-value mean in the context of this project?**
-Given a null hypothesis, what is the probability that a given feature's rank sum intensity differs from that of the population rank sum intensity by chance? 
+Given a null hypothesis, what is the probability that a given feature's rank sum intensity differs from that of the population rank sum intensity by chance?
 
 **What disparities in feature importance are to be expected due to the different feature selection methodology across Dorde and Kehoe?**
-Since Dorde used statistical inference for feature selection, redundancy in the feature set is smaller.
+Since Dorde used statistical inference for feature selection, features weren't chosen for their predictive importance. Instead features were chosen with regards to the distribution of features intensities. This may lead to very different features being chosen.
 Statistical inference is faster
 
 **How does the testing AUC relate to training AUC in a successful model?**
@@ -76,7 +83,8 @@ No, it is not the same thing, since iterative feature removal works by removing 
 No, he uses k-fold cross validation for choosing optimal values for hyperparameters.
 
 **How does K-fold feature selection work (kFFS) in Kehoe et al. and how does it differ from Dorde's feature selection?**
-The training data is fitted k-fold using the SSVM classifier, and  a vote for the most important features is obtained by repeating the fitting with random subsets for each fold. The average of the folds' accuracy is an estimate of the model's accuracy. Random subsets of data in the cross-validation scheme can result in small differences in obtained feature sets.
+The training data is fitted k-fold using the SSVM classifier, and  a vote for the most important features is obtained by repeating the fitting with random subsets for each fol. The most highly voted features across imputation methods were then sent for targeting in Skyline.
+The average of the folds' accuracy is an estimate of the model's accuracy. Random subsets of data in the cross-validation scheme can result in small differences in obtained feature sets.
 
 **How does combining features sets work in Kehoe et al.?**
 The max of the following features is chosen: mono-isotopic vs isotopic ion, intact vs insource fragment ion, and ion intensity. This is done not for the accuracy of the model, but for the interpretability of the results.
