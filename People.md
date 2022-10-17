@@ -1,10 +1,13 @@
 **When something involving someone else comes up, dump  it in this file. The goal is that e-mails to other people almost write themselves; once you've accumulated things to communicate, an internal order will often present itself.**
 
 # Leo
+
+Tappelin Kehoen käyttämän SSVM:n kanssa pari päivää mutta siinä oli paljon uutta luokista ja metodi oli integroitu juuri Kehoen dataan sopivaksi, oli vaikea yksinkertaisesti käyttää metodia. Kaikki tapahtuu calcomin luokkien kautta raa'sta datasta lopulliseen ennustukseen.
+
 Search Kehoe for split.
 
 Kehoe et al. käytti testeihin kokonaan eri batchia. Tämä olisi kai olennaista käytännön kannalta? Voitaisiinko verrata batch effectia Dorde ja Kehoen välillä?
-Muistatko, oliko tässä pointtina että se että luokittimen voi kuitenkin aina treenata uusilla batcheilla? Batch-discriminatory features, jotka Kehoe poisti datastaan, voivat olla tärkeitä luokittimen kannalta, tietenkin. 
+Muistatko, oliko tässä pointtina että se että luokittimen voi kuitenkin aina treenata uusilla batcheilla? Batch-discriminatory features, jotka Kehoe poisti datastaan, voivat olla tärkeitä luokittimen kannalta, tietenkin.
 
 Jos teenkin tuollaisen occurrence rankingin niin on helppo verrata Kehoeen?
 

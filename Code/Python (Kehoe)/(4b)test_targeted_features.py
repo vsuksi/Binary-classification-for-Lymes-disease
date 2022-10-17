@@ -33,8 +33,8 @@ if __name__ == "__main__":
 
     # Load in dataset
     x = Metabolomics.CCLymeMetaboliteSet(
-        data_file_path='../Data/20210211_ELvsHCEric_BF_BestMFsTransitionResults_2.csv',
-        metadata_file_path='../Data/HCvsEL_clinicaldata_102519_gen.csv', data_format="Skyline",
+        data_file_path='20210211_ELvsHCEric_BF_BestMFsTransitionResults_2.csv',
+        metadata_file_path='HCvsEL_clinicaldata_102519_gen.csv', data_format="Skyline",
         metadata_format=0, osmolality_file_path="")
 
     # set save path
@@ -95,4 +95,3 @@ if __name__ == "__main__":
     C_by_disease_state.loc['EDL'] = edl_bins
     C_by_disease_state.loc['ELL'] = ell_bins
     C_by_disease_state.to_csv(save_loc + '20210211_ELvsHCEric_BF_BestMFsTransitionResults_2_confusion_mat_by_disease_state.csv')
-

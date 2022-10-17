@@ -2,6 +2,9 @@
 
 **This is a repository for critical information regarding the project at hand. Formulating it into a question allows for a specific viewpoint to be addressed or an implication to be hinted at, for example. Include synonyms when applicable.**
 
+**Whatis UMAP?**
+Uniform Manifold Approximation and Projection,UMAP, can show clustering of very high-dimensional data. 
+
 **How does Log10-scaling work?**
 
 **What is the difference between Test.R and Train models.R?**

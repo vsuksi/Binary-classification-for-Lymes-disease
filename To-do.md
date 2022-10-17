@@ -4,7 +4,11 @@
 
 **Enter tasks in a rough order of importance!**
 
-Learn UMAP
+
+
+Kity order
+
+Åk till helakauppa i Helsingfors, Hämeentie 20!
 
 Change name of trained models
 

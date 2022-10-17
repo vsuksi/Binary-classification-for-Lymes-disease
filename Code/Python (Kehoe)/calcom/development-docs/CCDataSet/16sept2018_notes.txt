@@ -1,0 +1,152 @@
+notes on ccdataset. 16 September 2018.
+
+I'd like to clean up and streamline anything that's
+"bulky" to use right now. This can be small
+things such as renaming functions, or larger
+things such as merging parts of the workflow
+that ought to be merged.
+
+===================================================================
+
+1. Merging ccd creation workflow. Do these all need to be
+separate functions? Really?
+Perhaps they can be kept as hidden methods
+but it adds unnecessary bulk to workflow.
+
+***** STRATEGY WILL BE TO USE NEW FUNCTION ccd.create() TO HAVE AN ALL-IN-ONE *****
+
+ccd.add_attrs + *** MARKED SOON TO BE PRIVATE ***
+ccd.add_datapoints + *** MARKED SOON TO BE PRIVATE ***
+ccd.add_variable_names + *** WILL KEEP FOR NOW ***
+ccd.update_study_attrs *  *** DELETED ***
+ccd.cleanup_attrs *** KEEP FOR NOW ***
+ccd.delete_all_attrs_except **** MARKED PENDING DELETION ****
+
+Argument against merging is that at the opposite
+extreme you have functions which might require
+too many inputs to functions which inhibits
+the flexibility + speed of getting started.
+
+===================================================================
+
+******* DELETED ***********
+
+2. Things that can probably be deleted.
+
+ccd.labels_to_attrnames *
+
+===================================================================
+
+3. Merging workflow for classification task.
+This isn't so bad; the simplest version of doing:
+
+ccd.generate_data_matrix()
+ccd.generate_labels()
+
+Is nice I think. The default behavior of generate_labels()
+returning a dictionary in addition to the converted labels
+is good for reproduciblity but not the most intuitive for workflow.
+One option to do both is to return the raw values for the
+attribute, and pass off the task of converting to numerical
+values to the classifiers themselves.
+
+The function
+
+ccd.generate_classification_problem() +
+
+could take some thinking; whether it's actually useful.
+If it were reworked to take in a collection of
+queries as inputs, as opposed to just attribute names,
+it might see more use. This might involve co-opting
+
+ccd.generate_attr_from_queries() + in some way.
+
+A bit of thought could go in to whether stuff with nans could be
+thrown out by default, or enabling this behavior with a kwarg.
+Only thing I don't like about this is it's not transparent what's been
+thrown out.
+
+===================================================================
+
+********* DONE; REPLACED WITH self.find() AND MERGED THE TWO
+BY WAY OF *ARGS AND TYPE-CHECKING THE FIRST INPUT.
+NEEDS TO BE TESTED, THOUGH.
+*************
+4. Searching. This is the one that has been bugging me.
+The first thing I do want to do is take
+
+ccd.find_attr_by_value(), +
+ccd.find_attrs_by_values(), +
+
+and convert them to ccd.search(). Have a single "search" function
+with flexible inputs. In addition, I think it'd make sense
+to encourage to switch to default behavior being a
+dictionary; e.g.
+
+q = {
+'shedding' : True,
+'time_id' : [4,5],
+}
+
+but note that this is essentially compatible with current format;
+all that needs to be done is to cast the list-of-lists to dict.
+Encouragement can be done passively with new examples/user's guide
+to push new people towards dictionaries.
+
+===================================================================
+
+****************************** DONE *******************************
+5. kwargs. Can we give simpler names to the arguments
+feature_set and idx_list? Just shorten to (e.g.) "idxs"?
+Perhaps feature_set turns into just "features"?
+What about making them named arguments instead - with the
+convention of the ordering (idxs,features)?
+
+===================================================================
+
+************************
+DONE for generate_relaxed_attr. Undecided for generate_data_matrix() so far.
+************************
+6. Shelved additional functionality.
+
+ccd.generate_relaxed_attr() *; probably move it to utils or something.
+ccd.generate_data_matrix(). Not so much "shelved" but
+implemented at one point and not completely sure it's
+implemented in the cleanest way. For example, generating a
+derived attribute is nice, but is there a better way of
+appending these to the data matrix other than the current approach?
+
+===================================================================
+
+7. misc.
+
+*** NOT SURE HOW TO HANDLE; JUST ADDED A FUTUREWARNING. ***
+ccd.get_attr_values(). Can this be done in a cleaner way?
+Essentially use a pandas dataframe in the backend and do (e.g.)
+df[attrnames].iloc[idx_list]
+
+***DONE, renamed to ccd.partition()***
+ccd.attr_value_equivclasses(). Can we make a shorter name?
+ccd.eq() maybe?
+
+***DONE***
+ccd.save_to_disk(),
+ccd.load_from_disk().
+Can these just be renamed .save() and .load()?
+
+***DONE, DELETED***
+ccd.add_feature_names().
+I have no idea what this thing does, even after reading the docstring,
+or looking at the code. Has this ever been used?
+
+***ADDED WARNING ABOUT POSSIBLE FUTURE DELETION***
+ccd.generate_ccd_by_attr_values(). * (move somewhere else?)
+Has this ever been used? I suppose it's a quick function to cut down
+to a smaller size, but it seems like something that would be
+so rarely used.
+
+***REPLACED WITH .lexsort(). ADDED FUTUREDEPRECATIONWARNING.***
+ccd.sort_by_attrvalues().
+Another long function name that can probably be shortened.
+Maybe just ccd.lexsort()? Since that's what it comes down to;
+lexsort on attribute values.

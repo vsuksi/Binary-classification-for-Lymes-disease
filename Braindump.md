@@ -2,6 +2,27 @@
 
 **The braindump is a repository for the fleeting thoughts that further the project at hand but are better picked up at a later stage.**
 
+Try to pass the working .csv directly from r as per the reticulate website
+
+You may have to install do a fresh environment so that you install everything as before except that for installing setup.py, install its dependencies
+
+We don't need feature importances so perhaps take away feature id's from numpy array for SSVM?
+
+Use the same seed for every classifier?
+
+A random seed (or seed state, or just seed) is a number (or vector) used to initialize a pseudorandom number generator.
+
+%>% can be read as "and then"
+
+What is saveRDS?
+
+Wrapper method in pipeline? Perhaps filter methods just are the proverbial shit for biomedical data?
+
+https://www.ds-econ.com/quarto/
+
+Good genera
+Kehoe extensively used wrapper methods
+
 Site discriminatory features were removed by IFR, where features were removed until the balanced success rate for classification of site fell under 60%.
 
 KNN-imputation with log transform was used for IFR
@@ -14,7 +35,7 @@ KNN imputation with standardization
 
 Note which kind of batch effect; site or measurement.
 
-Features selected to Skyline were at least once in the top 10 of features in k folds of kffs, features from all transformation/imputation-schemes were included.
+Features selected to Skyline were at least once in the top 10 of features in kW folds of kffs, features from all transformation/imputation-schemes were included.
 
 Only use the ID, I have no clue what the "order" stands for.
 
