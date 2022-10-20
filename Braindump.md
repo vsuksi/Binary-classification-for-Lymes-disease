@@ -2,6 +2,24 @@
 
 **The braindump is a repository for the fleeting thoughts that further the project at hand but are better picked up at a later stage.**
 
+Perhaps run the whole pipeline with different amounts of data?
+
+Specify the lambda parameter?
+
+Actually, you should run the scripts with the full(lyme) dataset and check if the test set is the same as dorde used afterward
+
+You should be using the log loss feature importance for ranking feature importance
+
+Heatmap of feature importance vs feature importance?
+
+Make a heatmap of the top features and highlight the ones that were found to have high feature importance in the run_ml()
+
+Feature importance heatmap and
+
+How to collapse code rows in quarto presentation code?
+
+Code fold = true
+
 Try to pass the working .csv directly from r as per the reticulate website
 
 You may have to install do a fresh environment so that you install everything as before except that for installing setup.py, install its dependencies

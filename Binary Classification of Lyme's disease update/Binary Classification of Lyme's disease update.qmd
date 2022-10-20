@@ -1,0 +1,67 @@
+---
+title: "Binary Classification of Lyme's disease update"
+author: "Vilhelm suksi"
+date: "20.10.2022"
+format:
+  html:
+    code-fold: true
+---
+
+## Air Quality
+
+@fig-airquality further explores the impact of temperature on ozone level.
+
+```{r}
+#| label: fig-airquality
+#| fig-cap: Temperature and ozone level.
+#| warning: false
+
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) +
+  geom_point() +
+  geom_smooth(method = "loess")
+```
+
+```{python}
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+xpoints = np.array([1, 2, 6, 8])
+ypoints = np.array([3, 8, 1, 10])
+
+plt.plot(xpoints, ypoints)
+plt.show()
+```
+
+```{python}
+#| label: svm_classifier
+#| eval: false
+from sklearn import metrics
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Read in train data
+dftrain = pd.read_csv('train_data.csv', sep=',', header=None)
+dftrain = dftrain.to_numpy()
+ytrain = np.copy(dftrain[1:, 0])
+xtrain = np.copy(dftrain[1:, 1:])
+
+# Read in test data
+dftest = pd.read_csv('test_data.csv', sep=',', header=None)
+dftest = dftest.to_numpy()
+ytest = np.copy(dftest[1:, 0])
+xtest = np.copy(dftest[1:, 1:])
+
+# Fit model
+svm_model = svm.SVC()
+svm_model.fit(xtrain, ytrain)
+# Predict test cases
+prediction = svm_model.predict(xtest)
+
+# Metrics
+accuracy = metrics.accuracy_score(ytest, prediction)
+print(accuracy)
+```
