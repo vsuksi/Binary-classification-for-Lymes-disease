@@ -5,8 +5,8 @@ library(foreach)
 library(future)
 library(future.apply)
 
-doFuture :: registerDoFuture ()
-future :: plan(future::multisession, workers = 2)
+#doFuture :: registerDoFuture ()
+#future :: plan(future::multisession, workers = 2)
 
 dfbinary <- read.csv(file = "lyme_data.csv")
 
