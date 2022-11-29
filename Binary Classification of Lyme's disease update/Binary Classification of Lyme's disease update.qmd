@@ -6,7 +6,6 @@ format:
   html:
     code-fold: true
 ---
-
 ## Air Quality
 
 @fig-airquality further explores the impact of temperature on ozone level.

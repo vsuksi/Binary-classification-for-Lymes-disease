@@ -2,6 +2,117 @@
 
 **The braindump is a repository for the fleeting thoughts that further the project at hand but are better picked up at a later stage.**
 
+Make libraries go in alphabetical order?
+
+Maybe make a separate chunk for defining the method, cv_times, training fraction, kfold and specify default values
+
+Fix the training fraction: 0.98 (r training_frac)
+
+For SSVM you don't need any graphics; don't bother installing Cairo to do draw graphics.
+
+What do you need to do in order to make the feature number plot?
+- limit the number of features from wilcox; use the same functions as Dorde to specify the number of important features involved
+- make a barplot in the same way as the feature importance?
+-
+
+4 clusters in analysis.rmd plot is for visualizing batch effect?
+
+lyme_data.csv includes all features, you can select 10, 50 100 etc. from there according to
+
+Dorde isn't actually even using wilcox for feature selection!
+
+Rmember to use inline code in Quarto, for example `r 2 * pi`
+
+winCairo.dll was, for an unknown reason, not included with a conda installation of R, and is needed to draw some of the graphics. It can be included by copying from a regular executable install of the same version of R.
+
+If method=SSVM:
+reticulate till SSVM.py
+
+Libraries "mt" (Metabolomics Data Analysis Toolbox), "scater", "mia", "bluster", "biostrings" and "rmarkdown" along with respective dependencies was installed through R
+
+Conver rmd to qmd? (Analysis.rmd to analysis.qmd?)
+
+"For an unknown reason, the R Markdown package has to be installed separately through R."
+
+Perhaps you could make a separate option in main.R, quarto::quarto_render("report_extensive.Rmd") where you include feature importances, limit_features and possibly CoDaCoRe?
+
+Make limit_features so that it works with the data in report.rmd
+
+This is the deal: make a Quarto file in the style of report.rmd. In the same folder, have data.R, funcs.R, main.R and misc.R.
+
+What are the possible user inputs?
+
+Use source function
+
+Beware when installing R through conda; vanilla installs an old version; use conda forge instead.
+
+How to Quarto help()? The web-page is not the best.
+
+Also include what accuracy you got using the most important features,
+
+When a code chunk is time-consuming to run, consider caching it by using cache=true. This solves a problem with freeze, namely that using freeze the whole project is frozen, or alternatively on "auto", if a change is made, the whole project is rendered. Using cache, you can make changes to the documents in a project and render it without re-executing all the code.
+
+If the pipeline is done in Quarto, include instructions on how to Quarto "include" the feature importance. Eval=true?! "Navigate to code_chunks/get_feature_importance"
+
+So, if someone is to run a code chunk
+
+How does this relate to what I'm doing? If someone wants to rerender the whole project, including the cached project
+
+One only needs the virtual environment to execute the code, so cache=true may well work
+Text for explaining how to execute
+
+Freeze is not going to work for computation
+
+There seems to be a script for converting a .yml file to a .txt file if needed.
+
+In Quarto, Use eval:false to include code blocks without executing them; write the result instead. Where is this applicable in the project at hand? Or can you simply run it once you are completely certain of it working?
+
+Remember, even when using warnings:false and errors:false in the execution options of a code chunk, you can view errors and warnings in the terminal during render.
+- get_feature_importance()
+
+To install calcom: include the calcom directory in the same directory as the environment file and create a virtual environment from the .yml environment file. Or navigate to the file and do pip install -e calcom.
+
+Probably best to include the SSVM in the report as #not run. Comment why it is not a usable option: The creators of the library noted that it should be used for validation only, as development was halted and they don't have confidence in the package for real-world applications.
+
+You can also make webpages with Quarto!
+
+What does it mean when a code block is executed, where do I store the results?
+
+Use the same test data as Leo in GitLab/pipeline-dorde/analysis/report.rmd?
+
+So the point is to
+
+Use  dataset.csv from gitlab with the three seed splits and test with CoDaCoRe
+
+Run feature importance with the same three data splits as dorde?
+
+Creating subdirectory for conda environment.
+https://carpentries-incubator.github.io/introduction-to-conda-for-data-scientists/02-working-with-environments/index.html
+
+Choose the number of features as follows: include the important features as per get_feature_importance() and coda_core(), then
+
+Running mikropml adds "." before the outcome variable
+
+If you make a file called test or some other spurious name, it should be deleted immediately. Otherwise, name it according to your naming conventions. Moreover, name your test files with intent.
+
+Try taking the feature importances from the model object using get_feature_importance()
+
+You weren't getting comparable results due to having kfold=4 after testing with important features
+
+Can you simply hold out the test set for the SSVM in order to get reproducible results?
+
+Should I do this the feature limit thingamadingy for the most important features as per wilcox, permutation feature importance or random?
+
+If you just want to check something quickly as a one off, use any pane and close it afterwards
+
+Navigate the library with your arrows annd keys! How to stop it from scrolling though?
+
+Which file in calcom was like "insert the number of cvfolds, load cc dataset..."?
+
+Metric: _accuracy, roc_curve.py, _confusionmatrix.py
+
+Have the to-do list open by default in the right pane?
+
 Perhaps run the whole pipeline with different amounts of data?
 
 Specify the lambda parameter?

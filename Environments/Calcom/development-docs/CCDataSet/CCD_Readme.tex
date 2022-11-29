@@ -1,0 +1,344 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{epstopdf, epsfig}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+% \usepackage{algorithmicx}
+% \usepackage{algpseudocode}
+\usepackage{tabularx}
+% \usepackage{minted} % Uncomment and pdflatex with --shell-escape if needed.
+
+\usepackage[
+left=0.5in,
+right=0.5in,
+top=0.5in,
+bottom=0.75in
+]{geometry}
+
+\usepackage{xcolor}
+\definecolor{darkblue}{rgb}{0,0,0.7}
+\definecolor{caroblue}{cmyk}{0.235,0.075,0.004,0.016}
+\definecolor{darkred}{rgb}{0.7,0,0}
+
+\usepackage[colorlinks=true,allcolors=darkblue]{hyperref}
+
+
+%
+% Use a custom style for \section{}.
+\usepackage{titlesec}
+\titleformat
+{\section} % command
+%[display] % shape
+{\bfseries\Large} % format
+{\thesection.} % label
+{0.5em} % sep
+%{\thesection. \hspace{0.5em}} % before-code
+{} % before-code
+[
+\vspace{-0.6em}
+{\color{caroblue} \rule{0.8\textwidth}{0.05em}}
+] % after-code
+
+%
+% Suppress page numbering if there's only one page.
+% Requires (?) multiple compiles to work.
+\usepackage{fancyhdr}
+\usepackage{totcount}
+
+\regtotcounter{page}
+\cfoot{\ifnum\totvalue{page}>1 \thepage\else\fi}
+\pagestyle{fancy}
+
+% Need to remove headers that fancyhdr puts in.
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+
+\newcommand{\sol}[1]{ {\color{darkred} {#1}}}
+
+%%%%%%%%%%%%%%%
+% Misc
+\newcommand{\ttt}{\texttt}
+
+\newcommand\crule[3][black]{\textcolor{#1}{\rule{#2}{#3}}}
+
+% \newcommand\hardtask\crule[red]{0.2em}{0.2em}
+\newcommand{\hardtask}{%
+  \crule[red]{0.7em}{0.7em}\;%
+}
+\newcommand{\mediumtask}{%
+  \crule[yellow]{0.7em}{0.7em}\;%
+}
+\newcommand{\easytask}{%
+  \crule[green]{0.7em}{0.7em}\;%
+}
+
+\newcommand{\donetask}{%
+  \crule[black]{0.7em}{0.7em}\;%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% START
+%
+
+\title{Overview of the CCDataSet data structure}
+\author{Manuchehr Aminian}
+
+\begin{document}
+
+\maketitle
+
+
+\section{What would we like to do?}
+Broadly what we're trying to do is to identify biomarkers which play
+significant roles in the early stages of infectious disease, in one way
+or another. Studies related to this may or may not measure the same
+variables, be conducted exactly the same way, or have the same species
+of subjects. They may or may not have additional attached to them -
+when and where the study was done, the sex of the subjects, etc, etc.
+
+Here's a list of some of things we would like to automate cleanly:
+%
+\begin{enumerate}
+\item Control for batch effects across multiple studies.
+\item Perform feature selection based on one or more attributes.
+\item Perform various classification tasks based on one or more attributes (not necessarily the same ones as above).
+\item Identify important biomarkers common across multiple studies.
+\end{enumerate}
+%
+
+Here, we use the word ``attributes" broadly. These could be
+real-valued, binary, string, etc. If they're going to be used somewhere
+along the data analysis pipeline, they probably need to be
+finite and countable. If they're going to be added on as extra features,
+they just need to be able to be concatenated to the original features.
+%
+
+Now, here's how we've structured the data structure to handle these tasks
+so far. There are four basic classes which enable the functionality.
+These may be subject to change; there are advantages and disadvantages to
+what I've done. Anyway, they are:
+%
+\begin{enumerate}
+\item \texttt{CCDataSet}: The parent class, holding all the data, metadata, and
+functions for slicing and handling the data however we wish;
+\item \texttt{CCList}: A subclassed Python list. This is a minor modification of
+a usual list where the display is more compact.
+\item \texttt{CCDataPoint}: A subclassed \ttt{numpy.ndarray}. This can be anything
+in principle, but it's assumed this is an array of experimentally measured
+values. For the moment it's assumed all \ttt{CCDataPoint()}s have the same dimensions
+but this isn't strictly necessary.
+\item \texttt{CCDataAttr}: A class for each attribute for each data point.
+This keeps track of the value and type of the attribute, whether or not it's
+from the original data or derived from some kind of preprocessing, etc.
+\end{enumerate}
+
+These are the building blocks. Now into detail:
+
+\section{The typical workflow for loading}
+To this point, the way I've been using this is on a per-dataset basis. The
+basic order of operations in the loading script is:
+%
+\begin{enumerate}
+\item \ttt{ccd = CCDataSet()} (initialize an empty dataset);
+\item Manually create a (python) list of attributes you know the data have.
+For example, \ttt{attrnames=['SubjectID','sex','StudyID']}
+\item Manually create a second list with plaintext descriptions of these attributes.
+For example, \ttt{attrdescrs=['Subject ID for the mouse','Sex of the mouse (M or F)','The identifier for when/where the study was performed']}.
+This is non-essential, so you \emph{could} use empty strings, but don't do that.
+\item Do a call to \ttt{ccd.add\_attrs(attrnames,attrdescrs)} to tell \ttt{ccd} what to expect below;
+\item Create empty lists \ttt{dpoints=[]} and \ttt{dattrvals=[]} (or whatever you want to call them);
+\item Do a for-loop, \ttt{.append()}ing data and the attributes for each sample/subject/etc; (this is
+the bulk of the work)
+\item Do a call to \ttt{ccd.add\_datapoints(dpoints,attrnames,dattrvals)} to populate the thing.
+\end{enumerate}
+%
+After this point, you can use the functions built in to \ttt{ccd} to slice up the data
+however you like, depending on the attributes given.
+
+\section{The data structure}
+
+\subsection{CCDataSet}
+The parent class is a ``CCDataSet" (Calcom dataset) has the following
+stuff in it.
+
+\subsubsection{(Python) Attributes:}
+%
+\begin{itemize}
+\item \ttt{self.data} : A \ttt{CCList()} (a subclassed list with a minor tweak) containing zero or more \ttt{CCDataPoint()}s
+\item \ttt{self.attrnames} : A Python list of strings of all attributes the data points in the \ttt{CCDataSet} have
+\item \ttt{self.attrs} : A Python dictionary which maps entries in \texttt{self.attrnames} to corresponding \ttt{CCDataAttr()}.
+\end{itemize}
+%
+\subsubsection{Functions:}
+\begin{itemize}
+\item Data loading and i/o:
+\begin{itemize}
+	\item \ttt{self.generate\_id()}: Generates a unique IDs for new datapoints.
+	\item \ttt{self.is\_numeric()}: Checks if an input is of type int, float, or np.double.
+	\item \ttt{self.add\_attrs()}: Initializes a set of new \ttt{CCDataAttr()}s in self.attrs given a list of names and descriptions.
+	\item \ttt{self.append\_attr()}: Adds a single new \ttt{CCDataAttr()} and applies it to all the data points
+	in the list (needs fixing).
+	\item \ttt{self.add\_datapoints()}: Adds \ttt{CCDataPoint()}s to self.data with the given attributes and attribute values.
+	\item \ttt{self.save\_to\_disk()}: \textbf{DOESN'T WORK PROPERLY.} Intention is to save the entire structure to hard drive,
+			data, attributes, and all.
+\end{itemize}
+\item Data slicing and label generation:
+\begin{itemize}
+	\item \ttt{self.generate\_labels()}: Generates a list of integer labels based on some attribute. Also outputs a dictionary mapping the labels to their original attribute values.
+	\item \ttt{self.labels\_to\_attrnames()}: maps the labels to their original attribute values (based on \ttt{self.labels\_to\_attrnames()}).
+	\item \ttt{self.generate\_data\_matrix()}: Takes data points in self.data and generates a raw data matrix (type numpy.ndarray). Capable of
+	selecting a subset of the data and a subset of the features.
+	\item \ttt{self.find\_attr\_by\_value()}: Gives a list of pointers to data points which have a given value of a given attribute.
+	\item \ttt{self.find\_attrs\_by\_values()}: Gives a list of pointers to data points which match all the given criteria (attrname/attrvalue pairs).
+	\item \ttt{self.get\_attr\_values()}: Gives a list of attribute \emph{values} associated with the given attribute.
+	\item \ttt{self.generate\_relaxed\_attr()}: Not fully implemented. Creates a new \ttt{CCDataAttr()} for each data point based on an existing \ttt{CCDataAttr()} which is expected to be real-valued.
+	\item \ttt{self.attr\_value\_equivclasses()}: Returns the equivalence classes of a given attribute; that is, a list of attribute values (similar to above) and a dictionary which maps
+			these attribute values to lists of pointers associated with that attribute value.
+\end{itemize}
+
+\end{itemize}
+
+\subsection{CCDataPoint}
+The \ttt{CCDataPoint}s are intended to be just that - data points. What that
+means depends on context. Currently this is implemented as a subclassed
+\ttt{numpy.ndarray}, so it doesn't necessarily need to be a vector; it can be
+an array as well.
+\begin{itemize}
+\item Everything that \ttt{numpy.ndarray}s do, and...
+\item \ttt{self.set\_attrs()}: Applies a new set of attributes with the given
+names and values on to the \ttt{CCDataPoint}. For example, \ttt{d} is a
+\ttt{CCDataPoint}, we might have \ttt{CCDataAttr}s inside it,
+such as \ttt{d.SubjectID}, \ttt{d.sex}, etc.
+\end{itemize}
+
+\subsection{CCDataAttr}
+The \ttt{CCDataAttr}s are intended to be ``smart" in the sense that
+they don't only store the value, but some extra data relevant to the kinds
+of operations we might want to do with that attribute. Why would we
+want this? Some attributes might be real-valued (time since exposure);
+others might be discrete strings (the CC line, the hospital of the study, etc).
+We might also have attributes that were \emph{calculated} based on the
+data point (e.g., Fourier coefficients, coarsened labels, etc) and we want to
+keep in mind that they weren't part of the original data set. For these and
+a few other reasons, the \ttt{CCDataAttr} is a simple class set up as:
+%
+\begin{itemize}
+\item \ttt{self.name} : A string indicating the attribute's name (possibly a little redundant)
+\item \ttt{self.value} : The value of the attribute itself. This can be anything - string, float, integer, list, array, etc.
+\item \ttt{self.is\_derived} : Whether the attribute is ``derived" from the original data in some way -- that is, it's not
+a value, but it's come from the result of some transform/preprocessing/etc.
+\item \ttt{self.type} : Should correspond to \ttt{type(self.value)}.
+\item \ttt{self.is\_numeric} : Whether the value for this kind of attribute can be
+embedded on the real line, with the implications about total ordering, intervals, etc.
+Important if (for example) we have an attribute with discrete values of 0, 1, 2, ... but
+we don't actually want to imply that ordering has any meaning.
+\item \ttt{self.long\_description} : A string which describes the attribute in plain English.
+\end{itemize}
+
+\section{Things that need to be implemented}
+These are colored by expected difficulty (red is hardest).
+\begin{itemize}
+  \item Important:
+  \begin{itemize}
+    \item \hardtask \textbf{!!!} Setting up as automated a pipeline as possible going
+    from raw GEO datasets to \ttt{CCDataSet}s. Mmanu has some code and documentation
+    in his SVN folder which talks about this.
+    \item \donetask \emph{Done.} Keeping track of variable names on load of a single dataset.
+    \item \donetask \emph{Done, using HDF -- just needs to be maintained as more things are
+    added to the data structure.} Saving the dataset to disk properly using pickle files and/or HDF.
+    Both require some extra coding to do correctly save/load because of the
+    multi-level data structure. Pickle files are easier to load in principle, but
+    still require some unpacking when \ttt{pickle.load} is called because the
+    default behavior of pickle doesn't work for complicated classes.
+    \item \donetask \emph{Done.} Ability to calculate and store feature
+    subsets and access them by name when generating data matrices (probably
+    done using a dictionary).
+    \item \donetask \emph{Done.} Functionality to do leave-one-out
+    and other cross-validation techniques based on an
+    attribute, e.g., \ttt{SubjectID}, \ttt{StudyID}, etc. Related to the
+    end-to-end pipeline. These functions probably shouldn't be within the
+    dataset, but could take the dataset as an input. Unclear if it would be a
+    switch on the existing \ttt{Experiment} class for example, or if something
+    new should be created.
+  \end{itemize}
+  \item Non-essential/Wishlist/tidying up:
+  \begin{itemize}
+    \item \donetask \emph{Done.} Restructuring how \ttt{CCDataAttr()}s work to optimize for storage.
+    There's a lot of redundancy currently -- for example, long descriptions of
+    attributes don't need to be repeated for every data point. There are other
+    examples along these lines as well.
+    \item \easytask Cleaning up the functions in \ttt{CCDataSet}. There is
+    currently a bit of redundancy in the ``data slicing" functions. Maybe this is
+    okay, however. Needs thinking about.
+    \item \easytask Would like to make the format of inputs/outputs to functions,
+    optional arguments, etc, uniform across everything in the \ttt{CCDataSet}.
+    \item \donetask \emph{Done.} Functions to sort by a single attribute; by a sequence of
+    attributes. Would be nice if this only works on the list of pointers, where
+    ccd.data[idx\_set] (roughly) would give give you a sorted list if you were to
+    ask for attribute values.
+    \item \donetask \emph{Done.} There are ``one-off" conveniences built in
+    to some of the functions in \ttt{CCDataSet}. For example, if you give a
+    list of \ttt{numpy.ndarray}s in to \ttt{self.add\_datapoints} but only
+    give it a single list of attribute values, it will assume you want to
+    apply those attributes to every element of the list when they're added
+    to the dataset. These are nice in principle, but they can be annoying when
+    they only exist in some places; people will expect a certain convenience
+    they used in one function and get errors when they try it elsewhere.
+    Someone needs to map out a plan of what sorts of conveniences should
+    (or shouldn't) be given to the user when calling functions.
+    \item \easytask Modify the \ttt{\_\_str\_\_} and \ttt{\_\_repr\_\_}
+    definitions for \ttt{CCList} to make the list partially visible when
+    displaying in an interactive Python session. \textbf{Or}, have a
+    threshold number, beyond which only the total number is shown. \textbf{Or}
+    make the head and tail of the list visible beyond a threshold.
+  \end{itemize}
+  \item Long-term things, and things to think about:
+  \begin{itemize}
+    \item \hardtask \emph{In progress with CCGroup().} Possibly adding another class layer above this to store multiple datasets
+    \item \hardtask Tracking biomarkers/genes/pathways/etc across multiple species.
+    Possibly tied in with the previous point.
+    \item \mediumtask Implementing a graph structure to keep track of the
+    relationship between attributes to look at ``relaxed" classification, towards
+    the goal of looking at how one classification applies to another. For example,
+    how time of exposure classification done in 8-hour intervals performs if
+    relaxed to 24-hour intervals.
+    \item \hardtask Following up from the previous point,
+    a pipe dream would be to relate how biomarkers for infection relate across
+    biological taxonomies; e.g., relating different types of monkeys, relating
+    monkeys to humans, etc.
+    \item \hardtask Something to think about -- is there any reason
+    that \ttt{CCDataPoint}s have an elevated status? Meaning, when you ask for
+    \ttt{ccd.data[0]}, the thing you get back is a \ttt{CCDataPoint}. Does this
+    make the most sense? Can they be considered just another
+    \ttt{CCDataAttr} that just happens to be vector-valued? If yes, and we have a good
+    reason to do something about it, then this means we would need to do some
+    fundamental restructuring. This might be as easy as doing what I said above,
+    but a fair number of functions in \ttt{CCDataSet} would need to be modified.
+  \end{itemize}
+\end{itemize}
+
+\section{Examples}
+Below are a couple examples of how I've used this so far.
+Typically this has been done by pulling information from one or more
+files which we already know information about, and values are
+populated semi-manually. We'd like to move away from this if possible.
+
+\subsection{TAMU mice telemetry data}
+(placeholder)
+
+\subsection{Human challenge 7-study dataset (derived from already preprocessed GEO73072)}
+(placeholder)
+
+\subsection{Parameter sweep in a numerical algorithm applied to a small collection of functions}
+This is in relation to code that Ma has for
+anomaly detection based on radial basis functions.
+The algorithm has a real-valued parameter we
+deal with. There are a few types of functions
+which each take a parameter $\delta$ which has
+essentially the same role of adding noise of scale
+$\delta$ to a smooth function. Given all this, there
+are three attributes;
+
+\end{document}

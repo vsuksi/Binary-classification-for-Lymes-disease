@@ -1,0 +1,70 @@
+---
+title: "Lyme classification report"
+author: "Đorđe Klisura, Chouaib Benchraka, Vilhelm Suksi Leo Lahti"
+date: 'r Date()'
+format: html
+echo: false
+---
+```{r}
+#| label: setup
+#| include: false
+
+# Set global chunk options.
+knitr::opts_chunk$set(dev = "png",
+                      dev.args = list(type = "cairo-png"),
+		                  warning=FALSE,
+		                  message=FALSE,
+		                  echo=FALSE
+		                  )
+
+# Load packages.
+library(tidyverse)
+library(mikropml)
+library(data.table)
+library(umap)
+library(ggfortify)
+library(VIM)
+library(mt)
+library(cluster)
+library(kableExtra)
+library(rmdformats)
+library(scater)
+library(mia)
+library(dplyr)
+library(TreeSummarizedExperiment)
+library(patchwork)
+library(bluster)
+library(mikropml)
+library(ggplot2)
+```
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+#| label: load data
+#| echo: false
+source("funcs.R")
+set.seed(142)
+
+# Read in the data (assuming standardized format!)
+source("data.R")
+
+# Split the full data into training and test sets
+# The modeling functions will never see the test set
+
+## Training data
+train_test_split = 0.8
+train <- sample(ncol(tse), round(train_test_split*ncol(tse)))
+tse.train <- tse[, train]
+
+## Independent test data
+test <- setdiff(seq(ncol(tse)), train)
+tse.test  <- tse[, test]
+```
+Analysis of the following data set:
+- `r dataset`.
+
+# Sample similarity
+
+The samples are log10-transformed and features scaled before ordination.
+
+## Unsupervised ordination
+
+Ordination is shown here for all samples combined.

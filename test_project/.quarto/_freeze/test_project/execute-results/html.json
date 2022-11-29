@@ -1,0 +1,14 @@
+{
+  "hash": "d9be8b2c0c90a64ab60e3eed3e80af7d",
+  "result": {
+    "markdown": "---\ntitle: \"test_project\"\nexecute:\n  cache: true\n---\n\n\n## Quarto\n\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.\n\n\n::: {.cell hash='test_project_cache/html/unnamed-chunk-1_c438f241b136ad40e6386974f2e4414e'}\n\n```{.r .cell-code}\nlibrary(codacore)\n\n# Read in data.\ndftrain <- read.csv(file=\"train_data.csv\")\ndftest <- read.csv(file=\"test_data.csv\")\n\nytrain <- dftrain[, 1]\nxtrain <- dftrain[, -1]\n\nxtrain = xtrain + 9\n\nytrain <- as.factor(ytrain)\n\nmodel_CoDaCoRe <- codacore(xtrain, ytrain, logRatioType='balances', lambda=0)\n\nytest <- dftest[, 1]\nxtest <- dftest[, -1]\n\nxtest = xtest + 9\n\nytest <- as.factor(ytest)\n\nprediction_CoDaCoRe <- predict(model_CoDaCoRe, xtest, logits = F)\n\n# Get test set AUC\ncat(\"Test set AUC =\", pROC::auc(pROC::roc(ytest, prediction_CoDaCoRe, quiet = T)))\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nTest set AUC = 0.9393939\n```\n:::\n\n```{.r .cell-code}\n# Set probability threshold for\nhealthy <- prediction_CoDaCoRe < 0.5\nlyme <- prediction_CoDaCoRe >= 0.5\n\nprediction_CoDaCoRe[healthy] <- levels(ytest)[1]\nprediction_CoDaCoRe[lyme] <- levels(ytest)[2]\n\ncat(\"Classification accuracy on test set =\", round(mean(prediction_CoDaCoRe == ytest), 2))\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nClassification accuracy on test set = 0.83\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -4,9 +4,10 @@ library(glmnet)
 library(data.table)
 library(ipflasso)
 
+# Read in data.
 dftrain <- read.csv(file = "train_data.csv")
-#dfbinary <- as.factor(dfbinary)
 
+# Select data for training; don't
 ytrain <- dftrain[-1, 1]
 xtrain <- dftrain[-1, -1]
 
@@ -14,26 +15,26 @@ xtrain <- as.matrix(xtrain)
 ytrain <- as.matrix(ytrain)
 
 ytrain <- as.factor(ytrain)
-
+grid = seq(100, 1, length=1000)
 # standardize = FALSE?
 # repeat this pipeline 100 times for each feature amount and take the average?
-glmnet_fit <- cvr.glmnet(xtrain, ytrain, type.measure="auc", family="binomial", alpha=0, nfolds=5, ncv=100) #pmax=100
+glmnet_fit <- cv.glmnet(xtrain, ytrain, type.measure="auc", family="binomial", alpha=0, dfmax = 1, pmax = 4851, nfolds=5, nlambda=100)
+#specify lamda as well to get rid of the error?
+#dftest <-  read.csv(file = "test_data.csv")
 
-dftest <-  read.csv(file = "test_data.csv")
+#ytest <- dftest[-1, 1]
+#xtest <- dftest[-1, -1]
 
-ytest <- dftest[-1, 1]
-xtest <- dftest[-1, -1]
+#xtest <- as.matrix(xtrain)
+#ytest <- as.matrix(ytrain)
 
-xtest <- as.matrix(xtrain)
-ytest <- as.matrix(ytrain)
+#ytest <- as.factor(ytest)
 
-ytest <- as.numeric(ytest)
-
-#predict(cv.glmnet, newx = xtest)
+predict(glmnet_fit$glmnet.fit, newx = xtest)
 glmnet_assess <- assess.glmnet(glmnet_fit, xtest, ytest) #s=0.04, from object
 write.csv(glmnet_assess, "assesment.csv")
 
-write.csv(glmnet_fit$coeff, "glmnet_coeff")
+#write.csv(glmnet_fit$coeff, "glmnet_coeff")
 
 #Loading required package: survival
 #Warning message:

@@ -1,0 +1,6 @@
+project:
+  output-dir: _output
+toc:true
+number-sections: true
+execute:
+  freeze: auto

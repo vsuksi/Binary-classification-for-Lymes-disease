@@ -1,10 +1,32 @@
 
 **When something involving someone else comes up, dump  it in this file. The goal is that e-mails to other people almost write themselves; once you've accumulated things to communicate, an internal order will often present itself.**
 
+
+# Someone
+
+
 # Leo
 
-Tappelin Kehoen käyttämän SSVM:n kanssa pari päivää mutta siinä oli paljon uutta luokista ja metodi oli integroitu juuri Kehoen dataan sopivaksi, oli vaikea yksinkertaisesti käyttää metodia. Kaikki tapahtuu calcomin luokkien kautta raa'sta datasta lopulliseen ennustukseen.
-Search Kehoe for split.
+Hei,
+
+Pohjasin .qmd raportin vanhaan report.rmd tiedostoon. En ehtinyt sisällyttämään SSVM:ää tai piirteiden määrän vaikutusta ennustustarkkuuteen, lisään ne mahdollisimman pian.
+Keskittymisvaikeuteni ovat osoittautuneet aika rampauttaviksi ja olenkin hakenut apua. Jos mahdollista, niin voisi olla hyvä jos graduaihe olisi mahdollisimman itsenäinen eikä kytköksissä laajempiin aikataulullisiin kokonaisuuksiin, kun en oikein tiedä miten pystyn suoriutumaan lähiaikoina.
+
+Terveisin,
+Vilhelm
+
+
+
+
+
+
+
+
+Retrospektissä niin on vähän koomistakin että kesti scriptien toteuttamisessa, mutta se on toivottavasti osoitus siitä että olen oppinut jotain :D
+
+Voin vähän fiilistellä minkälaista on osata lukea dokumentaatiota hyvin ja ratkaista ongelmia nopeammin ja nopeammin niin että iso kuva pysyy tähtäimessä!
+
+Kehoen SSVM-implementaatio ei antanut valita foldeja niin että olisi aina eri tapaukset käsittelyssä niin kuin Dorden mikropml, eli tulokset vaihtelee vähän (±0.02) ajojen välillä.
 
 Kehoe et al. käytti testeihin kokonaan eri batchia. Tämä olisi kai olennaista käytännön kannalta? Voitaisiinko verrata batch effectia Dorde ja Kehoen välillä?
 Muistatko, oliko tässä pointtina että se että luokittimen voi kuitenkin aina treenata uusilla batcheilla? Batch-discriminatory features, jotka Kehoe poisti datastaan, voivat olla tärkeitä luokittimen kannalta, tietenkin.
@@ -21,8 +43,6 @@ Aloittelijana samaa asiaa tarkoittavat tai hyvin läheiset termit hämmentävät
 - AUC, AUROC
 - L1-regularization, Lasso regression
 - L2-regularization, Ridge regression
-
-Flexioffice?
 
 # Kehoe
 

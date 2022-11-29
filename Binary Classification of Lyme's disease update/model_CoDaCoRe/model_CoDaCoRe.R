@@ -1,0 +1,35 @@
+library(codacore)
+
+# Read in data.
+dftrain <- read.csv(file="train_data.csv")
+dftest <- read.csv(file="test_data.csv")
+
+ytrain <- dftrain[, 1]
+xtrain <- dftrain[, -1]
+
+xtrain = xtrain + 9
+
+ytrain <- as.factor(ytrain)
+
+model_CoDaCoRe <- codacore(xtrain, ytrain, logRatioType='balances', lambda=0)
+
+ytest <- dftest[, 1]
+xtest <- dftest[, -1]
+
+xtest = xtest + 9
+
+ytest <- as.factor(ytest)
+
+prediction_CoDaCoRe <- predict(model_CoDaCoRe, xtest, logits = F)
+
+# Get test set AUC
+cat("Test set AUC =", pROC::auc(pROC::roc(ytest, prediction_CoDaCoRe, quiet = T)))
+
+# Set probability threshold for
+healthy <- prediction_CoDaCoRe < 0.5
+lyme <- prediction_CoDaCoRe >= 0.5
+
+prediction_CoDaCoRe[healthy] <- levels(ytest)[1]
+prediction_CoDaCoRe[lyme] <- levels(ytest)[2]
+
+cat("Classification accuracy on test set =", round(mean(prediction_CoDaCoRe == ytest), 2))

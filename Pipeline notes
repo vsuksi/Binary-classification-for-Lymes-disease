@@ -1,0 +1,10 @@
+cleaning data
+feature_selection.R
+
+Do the charts and stuff belong to the pipeline?
+Remove playing around!
+
+Pipeline to modeling
+Master.R is a duplicate of method
+The results are for three random splits
+Perhaps rename/delete the replication pipeline

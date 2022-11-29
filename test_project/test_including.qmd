@@ -1,0 +1,8 @@
+---
+title: "test_project"
+---
+
+{{< include test_project.qmd >}}
+
+ses = sos
+lel = lol

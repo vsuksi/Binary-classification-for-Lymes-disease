@@ -2,17 +2,37 @@
 
 **This is a repository for critical information regarding the project at hand. Formulating it into a question allows for a specific viewpoint to be addressed or an implication to be hinted at, for example. Include synonyms when applicable.**
 
-**Whatis UMAP?**
-Uniform Manifold Approximation and Projection,UMAP, can show clustering of very high-dimensional data. 
+**At what point is kNN-imputation done in Leo's analysis pipeline? Is there a separate script for it?**
+There is not a separate script for it. Preprocessing of the data, which includes kNN-imputation, can probably vary bit depending on the source. As such, the preprocessing is not included in the pipeline.
 
-**How does Log10-scaling work?**
+**Should I always report the baseline accuracy? Couldn't one say that this is unimportant since it should always be 0.5 in binary classification?**
+Alternatively, one could argue that showing the model has a baseline of around 0.5 is a checkpoint of sorts to show that the model works.
+
+**Concepts can take a while to crystallize in a seamless formulation; meanwhile, try to formulate the matter as it often means progress.**
+
+**How are you going to communicate the calcom library and the environments.yml? Can calcom be installed by using the yml in Conda?**
+
+**Is the test data that Leo used in GitLab the same as test data from seed=2019 in mikropml?**
+
+**Is the Turku data completely different from the data I've been working with for the last month? Is this how batch effects are taken into consideration?**
+
+**What is the TreeSummarizedExperiment and why is it used by Leo in GitLab/pipeline-dorde/analysis/report.rmd?**
+It is an extension of SummarizedExperiment from Bioconductor, which is based on the R matrix datatype. Not sure if there is a good reason for it to be used by Leo for the dataset I've been working with; instead it is probably used for the practical application when data comes raw from patients with multiplicate assays. Even then the tree function shouldn't be needed, and indeed Leo does
+
+**How are the feature importance results presented?**
+The feature importances are presented as a mean difference between test and permuted AUROC for each feature; that is, each feature is permuted 100 times and the mean accuracy for models based on the permuted feature is compared against the accuracy for the unpermuted model.
+
+**What is UMAP?**
+Uniform Manifold Approximation and Projection,UMAP, can show clustering of very high-dimensional data.
+
+**What preprocessing does Dorde use?**
+He uses the log10 transformation as an argument in the preproc() function from the Metabolomics Data Analysis Toolbox library.
 
 **What is the difference between Test.R and Train models.R?**
 In Train models.R, the training dataset is split into three training
 
 **What is order and what is feature in the PeakTable from Kehoe sent to Skyline?**
-
-**Concepts can take a while to crystallize in a seamless formulation; meanwhile, try to formulate the matter as it often means progress.**
+Not sure what order is but it is not important. However, the targeted feature
 
 **What does the Wilcoxon p-value mean in the context of this project?**
 Given a null hypothesis, what is the probability that a given feature's rank sum intensity differs from that of the population rank sum intensity by chance?
@@ -25,7 +45,7 @@ Statistical inference is faster
 The testing AUC ought to be similar to the cross-validated training AUC.
 
 **What is the lambda hyperparameter in logistic regression?**
-
+The lambda hyperparameter is a measure of regularization, where
 **Are feature importances from Dorde are already ranked across the whole dataset since he used cv**
 
 **The XG-boost model slightly better, why not use it instead?**
