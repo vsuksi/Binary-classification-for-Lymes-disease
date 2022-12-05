@@ -1,6 +1,8 @@
 # Braindump
 
 **The braindump is a repository for the fleeting thoughts that further the project at hand but are better picked up at a later stage.**
+I believe Dorde's pipeline stops at validation since there is no sequestering of test data. The logical follow-up here is, as per Leo's "Analysis" in GitLab, to use this to get the hyperparameters for the dataset for training on the entirety of the training data. Dorde's report also includes metric estimates for classifier performance which can inform the decision of model.
+
 
 Make libraries go in alphabetical order?
 
