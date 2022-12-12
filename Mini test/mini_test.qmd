@@ -1,0 +1,25 @@
+---
+title: "Mini Test"
+engine: knitr
+execute:
+  cache: true
+---
+
+```{r setup}
+#| warning: false
+#| error: false
+#| include: false
+library(reticulate)
+use_condaenv("lyme_main")
+
+```{r}
+#| warning: false
+#| error: false
+#| echo: false
+sum <- 1 + 1
+sum
+```
+
+```{python}
+round(r.sum, 1)
+```

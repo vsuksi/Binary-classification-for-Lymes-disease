@@ -38,8 +38,10 @@ library(mikropml)
 library(ggplot2)
 ```
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
-#| label: load data
+#| label: load-data
 #| echo: false
+#| message=false
+#| warning=false
 source("funcs.R")
 set.seed(142)
 

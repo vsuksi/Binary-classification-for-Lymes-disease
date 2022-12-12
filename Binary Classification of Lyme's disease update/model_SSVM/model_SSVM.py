@@ -37,7 +37,7 @@ for i in range(100):
     std_acc.append(SSVM_model.classifier_results['SSVMClassifier_0']['std'])
     min_vals_acc.append(SSVM_model.classifier_results['SSVMClassifier_0']['min'])
     max_vals_acc.append(SSVM_model.classifier_results['SSVMClassifier_0']['max'])
-
+    
 # Write metrics to file.
 with open("model_SSVM_results", "w") as file:
     for i in mean_acc:

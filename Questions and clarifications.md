@@ -4,6 +4,12 @@
 
 UMAP was used to evaluate the feature selection by kFFS using different imputation methods.
 
+**How can you get the python code to use the exact same data split?**
+There are three options: split the data in a separate file which can be  called upon by the main file and the python file, use reticulate within the same file or do the data split with the same seed in the python file which is Quarto included.
+
+**Is the accuracy/number of features plot best implemented by using the Wilcox sum rank test on the data that is read in Leo's pipeline (has kNN performed)? Couldn't the missing values imputed by kNN result in false ranking of features, where some features get more important somehow?**
+It should be ok to use the Wilcoxon method on the imputed data. This is sufficient since Wilcoxon is after kNN in Dorde's thesis! Moreover, since kNN works by taking the average of the five nearest neighbors for a specific variable in feature space, features with imputed values are unlikely to provide better predictive accuracy or perform better in the Wilcoxon sum rank test.
+
 **How to plot the number of features against accuracy?**
 Make a grid to run the model with differing amounts of features. Save results after repeated runs for each feature amount.  Number of features on x-axis, accuracy on y-axis.
 
@@ -255,4 +261,4 @@ Cost hyperparameter: L2-regularized logistic regression and L1- and L2-regulariz
 The sigma hyperparameter is tuned for SVM with radial basis function kernel and controls the range of a single training instance. For a large value of sigma, the SVM decision boundary will rely on the points that are closest to the decision border**
 
  **How are the hyperparameters tuned?**
- The hyperparameters are tuned using a k-fold cross-validation on the training data, where the greatest hyperparameter value for average CVAUROC (from 100 repetitions) for each hyperparameter is used for running the test set.
+ The hyperparameters are tuned using a k-fold cross-validation on the training data, where the best hyperparameter value for average CVAUROC (from 100 repetitions) for each hyperparameter is used for running the test set.
