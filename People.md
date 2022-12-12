@@ -7,20 +7,10 @@
 
 # Leo
 
-Hei,
-
-Pohjasin .qmd raportin vanhaan report.rmd tiedostoon. En ehtinyt sisällyttämään SSVM:ää tai piirteiden määrän vaikutusta ennustustarkkuuteen, lisään ne mahdollisimman pian.
-Keskittymisvaikeuteni ovat osoittautuneet aika rampauttaviksi ja olenkin hakenut apua. Jos mahdollista, niin voisi olla hyvä jos graduaihe olisi mahdollisimman itsenäinen eikä kytköksissä laajempiin aikataulullisiin kokonaisuuksiin, kun en oikein tiedä miten pystyn suoriutumaan lähiaikoina.
+Tässä nyt jos jonkinlainen putki ja esitys kurssisuoritusta varten. Readme on nyt mielestäni selkeä. Toimintakykyni ei näyttäisi olevan nopeasti ratkaistavissa mutta haluaisin silti aloittaa gradun värkkäämisen.
 
 Terveisin,
 Vilhelm
-
-
-
-
-
-
-
 
 Retrospektissä niin on vähän koomistakin että kesti scriptien toteuttamisessa, mutta se on toivottavasti osoitus siitä että olen oppinut jotain :D
 
@@ -48,10 +38,3 @@ Aloittelijana samaa asiaa tarkoittavat tai hyvin läheiset termit hämmentävät
 
 
 # Aminian
-Hey there,
-
-
-The calcom library would indeed be for validation. The backstory is as follows: Leo Lahti's group (Turku Data Science) did a R pipeline on the dataset also used in Kehoe's work on Lyme's disease. However, the exact SSVM classifier used by Kehoe is unavailable for R. The calcom library would be greatly appreciated since we could then validate promising classifiers in the R pipeline against the SSVM used with success by Kehoe.
-
-All the best,
-Vilhelm

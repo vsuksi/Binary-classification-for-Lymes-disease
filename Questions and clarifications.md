@@ -2,6 +2,88 @@
 
 **This is a repository for critical information regarding the project at hand. Formulating it into a question allows for a specific viewpoint to be addressed or an implication to be hinted at, for example. Include synonyms when applicable.**
 
+UMAP was used to evaluate the feature selection by kFFS using different imputation methods.
+
+**How to plot the number of features against accuracy?**
+Make a grid to run the model with differing amounts of features. Save results after repeated runs for each feature amount.  Number of features on x-axis, accuracy on y-axis.
+
+**How to rank the features? Or is there a file with the features ranked á la Wilcoxon?**
+You can use the "Feature selection" file from Dorde with binary_outcome.csv to generate the ranked list of features á la Wilcoxon!
+
+**What are the user inputs in the pipeline?**
+Data, method and whether to execute the extended pipeline with feature importance and influence of feature amount. Another good option would be to make the extended version a separate script.
+
+**In your presentation, how are you going to deal with feature importance code chunks taking a long time to run?**
+I'll run them beforehand, use cache=true and "include" them in main presentation file.
+
+**Is it worth including labels for code chunks?**
+Yes, following in Leo's footsteps.
+
+**How are you going to include the optional feature importance code chunk?**
+Navigate to the code chunk and change setting eval:true.
+
+**Is there a good use case code chunk cache?**
+Setting cache=true for the SSVM code chunk could be handy since it shouldn't be used in the real-world application, yet it is good to include for validation.
+
+**Should I include the SSVM in the report?**
+Probably best to include the SSVM in the report as #not run. Comment why it is not a usable option: the creators of the library noted that it should be used for validation only, as development was halted and they don't have confidence in the package for real-world applications.
+
+**Can you simply hold out the test set for the SSVM in order to get reproducible results?**
+Yes, if I can figure out how to use the fitted model to classify test data samples.
+
+**If you make a heatmap of top features, how could you include the results Kehoe achieved**?
+Make a heatmap of the top features and highlight the ones that were found to have high feature importance in Kehoe's work
+
+**How does dataset.csv and dataset_after_knnin GitLab differ?**
+Dataset_after_KNN is with the original "EDL", "HDL" etc. outcomes, while dataset.csv has "lyme" and "healthy" as outcomes.
+
+**How many combinations of transformation and imputation schemes did Kehoe evaluate?**
+Kehoe evaluated 18 different combinations of transformation and imputation schemes. The chosen ones:
+KNN imputation with log transformation
+Median imputation with log transformation
+KNN imputation with median-fold change normalization
+KNN imputation with standardization
+
+**How are site and measurement batch effect different from one another?**
+Site effects refer to how the metabolic functioning in a population can differ depending on the site, because of environment, culture and more. Measurement batch effect refers to differential results obtained because of instrument setup and use.
+
+
+**How does Dorde split do 3 random data splits?**
+By choosing different seeds. Logistics model with 3 random data splits means training the model 3 times on random 75% of training data and cross validated on the 75% 100 times before testing on the remaining 25%.
+
+**What does intensity and mass/charge ratio mean in the context of LC/MS?**
+Intensity is the relative abundance while the mass/charge ratio and retention time describes the identity of the feature.
+
+**What is the clinical data and why is it used?**
+The clinical dataset contains information about the patients including whether they have Lyme's disease.
+
+**Are Dorde's and Kehoe's results comparable in any meaningful sense?**
+Barely, because there is no batch effect in Dorde's approach as the test set came from the same batch. Kehoe's test set was from another batch.
+
+**Was the Kehoe test set from a different batch altogether?**
+Indeed, the test set Kehoe uses is from a different batch, establishing model model performance on samples from different batches
+
+
+**The justification for training with old and testing with new data has to do with the reality of batch effects, perhaps?**
+Probably, since batch effects will be present in the real-life application due to different LC/MS-equipment and other factors.
+
+**How does LC/MS work?**
+LC separates metabolites by their retention time, MS by mass
+
+**Which features contributed to the batch effect in Kehoe?**
+Features 2198, 206, 682 and 147 were identified to contribute to batch effects from the log/knn, median-fold change/knn, standard/knn and raw/knn methods, respectively. After removal of these features, the batch effect disappeared for the healthy control samples. These features did, however, contribute to the separation of disease state (EDL vs ELL).
+
+**What preprocessing methodology worked best for Kehoe?**
+KNN imputation with log transformation.
+
+**Is it problematic that Kehoe did no correlation analysis of the features?**
+
+**Can I simply feed the pipeline (disp_features(result ,1:45))  in order run the pipeline with Leo's suggested amounts of features?**
+This should be possible, try it out!
+
+**Is Dorde even using Wilcoxon to limit the number of features?**
+Turns out that Dorde isn't limiting the amount of features.
+
 **At what point is kNN-imputation done in Leo's analysis pipeline? Is there a separate script for it?**
 There is not a separate script for it. Preprocessing of the data, which includes kNN-imputation, can probably vary bit depending on the source. As such, the preprocessing is not included in the pipeline.
 
@@ -31,15 +113,14 @@ He uses the log10 transformation as an argument in the preproc() function from t
 **What is the difference between Test.R and Train models.R?**
 In Train models.R, the training dataset is split into three training
 
-**What is order and what is feature in the PeakTable from Kehoe sent to Skyline?**
-Not sure what order is but it is not important. However, the targeted feature
+**What is order and what is id in the PeakTable from Kehoe sent to Skyline?**
+Not sure what order is but it is not important. ID is where it's at for tracking samples.
 
 **What does the Wilcoxon p-value mean in the context of this project?**
 Given a null hypothesis, what is the probability that a given feature's rank sum intensity differs from that of the population rank sum intensity by chance?
 
 **What disparities in feature importance are to be expected due to the different feature selection methodology across Dorde and Kehoe?**
-Since Dorde used statistical inference for feature selection, features weren't chosen for their predictive importance. Instead features were chosen with regards to the distribution of features intensities. This may lead to very different features being chosen.
-Statistical inference is faster
+Since Dorde used a filter method based on statistical inference for feature selection, features weren't chosen for their predictive importance. Instead features were chosen with regards to the distribution of features' intensities. This may lead to very different features being chosen from Kehoe's embedded selection.
 
 **How does the testing AUC relate to training AUC in a successful model?**
 The testing AUC ought to be similar to the cross-validated training AUC.
@@ -58,9 +139,6 @@ The lambda hyperparameter is a measure of regularization, where
 
 **What test is used, exactly, and why?**
 Wilcoxon rank-sum test (Mann-Whitney U test). It is tolerant against outliers which are abundant in clinical data, which is problematic, and being non-parametric, it works better for data that isn't normally distributed. This is often the case in biomedical data.
-
-**How to make a plot with the number of features**
-Number of features on x-axis, accuracy on y-axis
 
 **How does L1 (Lasso) and L2-regularized (Ridge) regression differ? Which one performed better in Dorde?** Lasso regression adds the absolute weight coefficient as a penalty term to the cost function, while Ridge regression adds the square of the weight coefficient to the cost function.
 L2-regularized logistic regression was used in glmnet.

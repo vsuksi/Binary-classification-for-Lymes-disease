@@ -127,10 +127,10 @@ training_frac = 0.98 # Set to this since 1 is not accepted; train with (almost) 
 kfold <- 5
 outcome_variable <- "Group"
 
-if(method=="SSVM")
-{
-  SSVM <- TRUE
-}else{
+#if(method=="SSVM")
+#{
+#  SSVM <- TRUE
+#}else{
   library(mikropml)
   dataset <- as.data.frame(t(assay(tse.train, "signal")))
   dataset$Group=colData(tse.train)$Group
@@ -167,10 +167,7 @@ if(method=="SSVM")
                                                tuneGrid = tune_grid)
 
 
-}
-```
-
-```{r, child=if (!SSVM) 'appendix.Rmd'}
+#}
 ```
 
 The pipeline was run with the following parameters
