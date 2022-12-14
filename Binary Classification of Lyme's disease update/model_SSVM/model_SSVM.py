@@ -26,7 +26,6 @@ max_vals_acc = []
 classifier=calcom.classifiers.SSVMClassifier()
 classifier.params['C'] = 1.0
 
-
 # Run ML-pipeline in a similar manner to Dorde's run_ml(); five-fold cross validation is performed 100 times. Save metrics in lists.
 for i in range(100):
     SSVM_model = calcom.Experiment(features, labels, classifier_list=[classifier], cross_validation='stratified_k-fold', evaluation_metric=calcom.metrics.ConfusionMatrix('acc'), folds=5)
@@ -37,7 +36,7 @@ for i in range(100):
     std_acc.append(SSVM_model.classifier_results['SSVMClassifier_0']['std'])
     min_vals_acc.append(SSVM_model.classifier_results['SSVMClassifier_0']['min'])
     max_vals_acc.append(SSVM_model.classifier_results['SSVMClassifier_0']['max'])
-    
+
 # Write metrics to file.
 with open("model_SSVM_results", "w") as file:
     for i in mean_acc:

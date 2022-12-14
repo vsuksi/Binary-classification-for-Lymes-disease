@@ -5,27 +5,17 @@
 
 **Enter tasks in a rough order of importance!**
 
-```{r, child=if (!SSVM) 'appendix.Rmd'} add this back to report.rmd when it works otherwise
+Run the SSVM classifier overnight on repeat and modify the code so that the graph presents the average accuracy for the regularization parameter C across the repeated runs. At least run it a few times and compare the graphs (jot down this met)
 
-Save the environment to .yml again, igraph package was added (conda install)
+Do the rest of the SSVM pipeline, what I mean the part where you use the regularization parameter 0.1 to train (or choose from list?) and predict the classes for the new data.
 
-Do the funcking Cairo thingamadinghy
+{r, child=if (!SSVM) 'appendix.Rmd'} add this back to report.rmd when it works otherwise
 
 Rename the GitHub repository accordingly: commit and push, then delete it locally and clone from GitHub after renaming it there
-
-package 'biostrings' is not available for Bioconductor version '3.14'
-
-Conda compare the activated lyme_main environment with lyme_main.yml
-
-Make limit_features so that it works with the data in report.rmd
 
 Run feature importance with the same three data splits as Dorde
 
 Check how to plot number of features vs accuracy, choose which method/library to use (same as Leo in analysis?)
-
-Try creating an environment from lyme_main.yml
-
-Compare dataset.csv with dataset_after_knn.csv
 
 Make get_feature_importance() compatible with whatever method the user chooses.
 

@@ -2,6 +2,21 @@
 
 **This is a repository for critical information regarding the project at hand. Formulating it into a question allows for a specific viewpoint to be addressed or an implication to be hinted at, for example. Include synonyms when applicable.**
 
+**What are the pros and cons of running the regularization parameter loop repeatedly in order to generate an graph averaged over repeated runs instead of simply running the graph several times and checking by eye?**
+If included in the final pipeline
+
+**Why can't you simply choose the regularization parameter value which gives the best accuracy**
+Because of the plateau; there is a range of regularization parameter values which perform similarly. Thus, choosing the one that gives the best accuracy could be one that doesn't incur penalty in an optimal fashion. This also prevents over-fitting to the training data, giving you the best bet at predicting classes in the test data.
+
+**Why can't you use the regularization parameter value from Kehoe directly?**
+If Kehoe had used log10-transformation and kNN, this would probably work, especially if valued somewhat higher just to be safe. Thing is, Kehoe used log2 transformation and the exact value of the regularization parameter is not mentioned in Kehoe.
+
+**How is the hyperparameter value C chosen in Kehoe et al.?**
+The hyperparameter value C between 1 and 10 with intervals of 0.2 is chosen from a plot generated using "classify()", a function in "metabolomics.py".
+
+**Is the SSVM classifier, as implemented through Calcom experiment class in SSVM_for_qmd.py, the same as Dorde's run_ml()?**
+The strata in cross-validation are random anyways, so the experiment class works out similarly to run_ml() but without the validation partition. The 100 times repeating five-fold cross validation is for choosing the best lambda value to predict the labels in the test data. Repeated k-fold cross-validation also serves as an estimate of accuracy.
+
 UMAP was used to evaluate the feature selection by kFFS using different imputation methods.
 
 **How can you get the python code to use the exact same data split?**
