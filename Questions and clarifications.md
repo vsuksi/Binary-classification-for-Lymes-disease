@@ -3,7 +3,7 @@
 **This is a repository for critical information regarding the project at hand. Formulating it into a question allows for a specific viewpoint to be addressed or an implication to be hinted at, for example. Include synonyms when applicable.**
 
 **What are the pros and cons of running the regularization parameter loop repeatedly in order to generate an graph averaged over repeated runs instead of simply running the graph several times and checking by eye?**
-If included in the final pipeline
+If included in the final pipeline, the it wouldn't be very smooth to generate the same graph repeatedly and compare them by eye. Thus, do an average of of 10 runs. This shouldn't take too long, but will require som modification
 
 **Why can't you simply choose the regularization parameter value which gives the best accuracy**
 Because of the plateau; there is a range of regularization parameter values which perform similarly. Thus, choosing the one that gives the best accuracy could be one that doesn't incur penalty in an optimal fashion. This also prevents over-fitting to the training data, giving you the best bet at predicting classes in the test data.

@@ -5,15 +5,11 @@
 
 **Enter tasks in a rough order of importance!**
 
-Run the SSVM classifier overnight on repeat and modify the code so that the graph presents the average accuracy for the regularization parameter C across the repeated runs. At least run it a few times and compare the graphs (jot down this met)
+Run feature importance with the same three data splits as Dorde.
 
-Do the rest of the SSVM pipeline, what I mean the part where you use the regularization parameter 0.1 to train (or choose from list?) and predict the classes for the new data.
+Check how the regularization parameter value relates to classification accuracy in the data sequestered by Leo.
 
-{r, child=if (!SSVM) 'appendix.Rmd'} add this back to report.rmd when it works otherwise
-
-Rename the GitHub repository accordingly: commit and push, then delete it locally and clone from GitHub after renaming it there
-
-Run feature importance with the same three data splits as Dorde
+Run the SSVM classifier overnight on repeat and modify the code so that the graph presents the average accuracy for the regularization parameter C across the repeated runs. At least run it a few times and compare the graphs.
 
 Check how to plot number of features vs accuracy, choose which method/library to use (same as Leo in analysis?)
 
