@@ -2,6 +2,9 @@
 
 **This is a repository for critical information regarding the project at hand. Formulating it into a question allows for a specific viewpoint to be addressed or an implication to be hinted at, for example. Include synonyms when applicable.**
 
+**Isn't the test data partition a bit small to make meaningful conclusions from?**
+Yes, the test data partition of under 20 samples is not optimal, but this is a limitation we have to work with.
+
 **What are the pros and cons of running the regularization parameter loop repeatedly in order to generate an graph averaged over repeated runs instead of simply running the graph several times and checking by eye?**
 If included in the final pipeline, the it wouldn't be very smooth to generate the same graph repeatedly and compare them by eye. Thus, do an average of of 10 runs. This shouldn't take too long, but will require som modification
 
